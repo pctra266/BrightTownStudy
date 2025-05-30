@@ -1,0 +1,47 @@
+{
+    "flashcards": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "answer": "Paris",
+        "category": "Geography",
+        "hint": "It’s also known as the City of Light"
+      },
+      {
+        "id": 2,
+        "question": "Trong JavaScript, từ khóa nào được dùng để khai báo biến mà không thể tái gán?",
+        "answer": "`const`",
+        "category": "JavaScript",
+        "hint": "Một biến khai báo bằng từ khóa này không thể gán lại giá trị sau khi khởi tạo"
+      },
+      {
+        "id": 3,
+        "question": "What does CSS stand for?",
+        "answer": "Cascading Style Sheets",
+        "category": "Web Development",
+        "hint": "It’s used to style HTML elements"
+      },
+      {
+        "id": 4,
+        "question": "Khái niệm “closure” trong JavaScript là gì?",
+        "answer": "Closure là một hàm có thể truy cập vào biến của hàm cha dù hàm cha đã kết thúc thực thi.",
+        "category": "JavaScript",
+        "hint": "Liên quan đến phạm vi và lexical environment"
+      },
+      {
+        "id": 5,
+        "question": "What is the result of `2 + '2'` in JavaScript?",
+        "answer": "`'22'` (string)",
+        "category": "JavaScript",
+        "hint": "JavaScript thực hiện phép cộng giữa số và chuỗi như thế nào?"
+      },
+      {
+        "id": 6,
+        "question": "Trong React, Hook `useState` trả về gì?",
+        "answer": "`[value, setValue]` – một mảng bao gồm state hiện tại và hàm để cập nhật state đó.",
+        "category": "React",
+        "hint": "Hook giúp quản lý local state trong component function"
+      }
+    ]
+  }
+  
