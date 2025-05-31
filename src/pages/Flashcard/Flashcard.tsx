@@ -1,88 +1,119 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Button, Spinner, Alert } from 'react-bootstrap';
-import api from '../../api/api';
+import { useState, useEffect } from "react";
+import api from "../../api/api";
+import "./Flashcard.css";
 
 const Flashcard = () => {
-  const [flashcard, setFlashcard] = useState(null);
+  const [flashcards, setFlashcards] = useState<any[]>([]);
+  const [flashcard, setFlashcard] = useState<any | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchFlashcard = async () => {
-      try {
-        // Gọi API: GET http://localhost:9000/flashcards?id=1
-        const response = await api.get(`/flashcards?id=1`);
-        // JSON Server trả về mảng (response.data là array)
-        if (response.data.length > 0) {
-          setFlashcard(response.data[0]);
-        } else {
-          setError('Không tìm thấy flashcard với id = 1');
-        }
-      } catch (err) {
-        setError('Có lỗi khi tải dữ liệu từ server');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchFlashcard();
+    fetchFlashcards();
   }, []);
 
-  const handleToggleAnswer = () => {
-    setShowAnswer((prev) => !prev);
+  const fetchFlashcards = async () => {
+    try {
+      const response = await api.get("/flashcards");
+      if (response.data.length > 0) {
+        setFlashcards(response.data);
+        setFlashcard(response.data[0]);
+      } else {
+        setError("Không tìm thấy flashcards nào");
+      }
+    } catch (err) {
+      setError("Có lỗi khi tải dữ liệu từ server");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      flashcards.length > 0 &&
+      currentIndex >= 0 &&
+      currentIndex < flashcards.length
+    ) {
+      setFlashcard(flashcards[currentIndex]);
+      setIsFlipped(false);
+    }
+  }, [currentIndex, flashcards]);
+
+  const handleFlip = () => {
+    setIsFlipped((prev) => !prev);
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    } else {
+      alert("Đã đến câu hỏi đầu tiên");
+    }
+  };
+
+  const handleNext = () => {
+    if (currentIndex < flashcards.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    } else {
+      alert("Đã đến câu hỏi cuối cùng");
+    }
   };
 
   if (loading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '200px' }}>
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </div>
-    );
+    return <div className="loading">Loading...</div>;
   }
 
   if (error) {
-    return (
-      <Alert variant="danger" className="mt-3">
-        {error}
-      </Alert>
-    );
+    return <div className="error-box">{error}</div>;
+  }
+
+  if (!flashcard) {
+    return null;
   }
 
   return (
-    <Card style={{ width: '18rem', margin: '1rem auto' }}>
-      <Card.Body>
-        <Card.Title>Flashcard ID: {flashcard.id}</Card.Title>
-        <Card.Text>
-          <strong>Question:</strong> {flashcard.question}
-        </Card.Text>
+    <div className="wrapper">
+      <div className="card-container" onClick={handleFlip}>
+        <div className={`card-inner ${isFlipped ? "flipped" : ""}`}>
+          <div className="face">
+            <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>
+              Question:
+            </div>
+            <div>{flashcard.question}</div>
+          </div>
 
-        {showAnswer && (
-          <Card.Text>
-            <strong>Answer:</strong> {flashcard.answer}
-          </Card.Text>
-        )}
+          <div className="face back">
+            <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>
+              Answer:
+            </div>
+            <div>{flashcard.answer}</div>
+          </div>
+        </div>
+      </div>
 
-        <Button variant="primary" onClick={handleToggleAnswer}>
-          {showAnswer ? 'Hide Answer' : 'Show Answer'}
-        </Button>
-      </Card.Body>
-
-      <Card.Footer>
-        <small className="text-muted">
-          Category: {flashcard.category}
-          {flashcard.hint && (
-            <>
-              <br />
-              Hint: {flashcard.hint}
-            </>
-          )}
-        </small>
-      </Card.Footer>
-    </Card>
+      <div className="controls">
+        <button
+          onClick={handlePrevious}
+          className="btn"
+          disabled={currentIndex === 0}
+        >
+          &lt;
+        </button>
+        <span className="counter">
+          {currentIndex + 1}/{flashcards.length}
+        </span>
+        <button
+          onClick={handleNext}
+          className="btn"
+          disabled={currentIndex === flashcards.length - 1}
+        >
+          &gt;
+        </button>
+      </div>
+    </div>
   );
 };
 
