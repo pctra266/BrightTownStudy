@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const location = useLocation();
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => location === null ? false : location.pathname === path;
 
   return (
     <nav className="navbar">
@@ -21,8 +21,8 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/flashcard" className={isActive("/flashcard") ? "active" : ""}>
-            Flashcard
+          <Link to="/flashcards" className={isActive("/flashcards") ? "active" : ""}>
+            Flashcards
           </Link>
         </li>
       </ul>
