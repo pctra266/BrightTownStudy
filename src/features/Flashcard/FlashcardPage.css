@@ -1,0 +1,9 @@
+.flashcard-page {
+    padding: 1rem;
+  }
+  
+  .loading, .error-box {
+    text-align: center;
+    margin-top: 2rem;
+    color: #f44336;
+  }
