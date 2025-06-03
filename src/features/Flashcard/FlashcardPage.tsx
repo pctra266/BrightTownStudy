@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, useNavigate, useParams } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import FlashcardList from "./components/FlashcardList";
 import FlashcardForm from "./components/FlashcardForm";
 import FlashcardViewer from "./components/FlashcardViewer";
@@ -9,9 +9,10 @@ import { createFlashcard, updateFlashcard } from "./services/flashcardService";
 import "./FlashcardPage.css";
 
 const FlashcardPage: React.FC = () => {
-  const { flashcards, loading, error, removeFlashcard, fetchData } = useFlashcards();
+  const { flashcards, loading, error, removeFlashcard, fetchData } =
+    useFlashcards();
   const navigate = useNavigate();
-  const [id,setId] = useState<string>();
+  const [id, setId] = useState<string>();
   const {
     question,
     answer,
@@ -25,7 +26,7 @@ const FlashcardPage: React.FC = () => {
   const handleCreate = async (data: { question: string; answer: string }) => {
     try {
       await createFlashcard(data);
-      await fetchData(); 
+      await fetchData();
       navigate(`/flashcards`);
     } catch (err) {
       console.error(err);
@@ -34,12 +35,11 @@ const FlashcardPage: React.FC = () => {
   };
 
   const handleUpdate = async (data: { question: string; answer: string }) => {
-    console.log('Updating flashcard with id:', id, 'and data:', data);
+    console.log("Updating flashcard with id:", id, "and data:", data);
     if (!id) return;
     try {
-      
       await updateFlashcard(id, data);
-      await fetchData(); 
+      await fetchData();
       navigate(`/flashcards`);
     } catch (err) {
       console.error(err);
@@ -48,7 +48,7 @@ const FlashcardPage: React.FC = () => {
   };
 
   const handleEdit = (editId: string) => {
-    console.log('triggered edit for id:', editId);
+    console.log("triggered edit for id:", editId);
     fetchFormData(editId);
     setId(editId);
     navigate(`edit/${editId}`);
@@ -80,13 +80,12 @@ const FlashcardPage: React.FC = () => {
   const handlePlay = () => {
     setCurrentIndex(0);
     setIsFlipped(false);
-    navigate(`/flashcards/view`);}
+    navigate(`/flashcards/view`);
+  };
 
   const handleFlip = () => {
     setIsFlipped((prev) => !prev);
   };
-
-
 
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error-box">{error}</div>;
