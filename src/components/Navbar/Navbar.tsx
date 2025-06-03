@@ -21,8 +21,8 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/flashcards" className={isActive("/flashcards") ? "active" : ""}>
-            Flashcards
+          <Link to="/library" className={isActive("/library") ? "active" : ""}>
+            Library
           </Link>
         </li>
       </ul>

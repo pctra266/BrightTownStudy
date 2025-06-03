@@ -1,9 +1,9 @@
 import React from 'react';
-import type { FlashcardType } from '../types';
+import type { FlashcardItem, FlashcardSet } from '../types';
 import './FlashcardViewer.css';
 
 interface FlashcardViewerProps {
-  flashcards: FlashcardType[];
+  flashcards: FlashcardItem[];
   currentIndex: number;
   isFlipped: boolean;
   onFlip: () => void;

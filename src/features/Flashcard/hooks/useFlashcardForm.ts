@@ -16,7 +16,7 @@ export const useFlashcardForm = ( id:string ) => {
 
   const fetchData = async (id:string) => {
     try {
-      const item = await getFlashcardById(id);
+      const item = await getFlashcardById('1',id);
       setQuestion(item.question);
       setAnswer(item.answer);
     } catch (err) {
