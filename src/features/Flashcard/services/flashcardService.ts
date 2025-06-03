@@ -1,31 +1,60 @@
+// import { data } from "react-router-dom";
 import api from "../../../api/api"; 
-import type { FlashcardType } from "../types";
+import type { FlashcardSet,FlashcardSetMeta, FlashcardItem } from "../types";
 
-export const getAllFlashcards = async (): Promise<FlashcardType[]> => {
-  const response = await api.get<FlashcardType[]>('/flashcards');
+export const getFlashcardSets = async () => {
+  const response = await api.get<FlashcardSetMeta[]>('/flashcardSets');
+  return response.data;
+}
+
+export const getFlashcardSetById = async (flashcardSetId: string) => {
+  const response = await api.get<FlashcardSet>(`/flashcardSets/${flashcardSetId}`);
+  return response.data;
+}
+
+export const createFlashcardSet = async (data: Omit<FlashcardSet, 'id'>): Promise<FlashcardSet> => {
+  const response = await api.post<FlashcardSet>('/flashcardSets', data);
+  return response.data;
+}
+
+export const updateFlashcardSet = async (flashcardSetId: string, data: Omit<FlashcardSet, 'id'>): Promise<FlashcardSet> => {
+  const response = await api.put<FlashcardSet>(`/flashcardSets/${flashcardSetId}`, data);
+  return response.data;
+}
+
+export const deleteFlashcardSet = async (flashcardSetId: string): Promise<void> => {
+  await api.delete(`/flashcardSets/${flashcardSetId}`);
+}
+
+export const getFlashcardsInSet = async (flashcardSetId: string = ""): Promise<FlashcardSet> => {
+  const response = await api.get<FlashcardSet>(`/flashcardSets/${flashcardSetId}/flashcards`);
   return response.data;
 };
 
-export const getFlashcardById = async (id: string): Promise<FlashcardType> => {
-  const response = await api.get<FlashcardType>(`/flashcards/${id}`);
+
+
+export const getFlashcardById = async (flashcardSetId: string,flashcardId: string): Promise<FlashcardItem> => {
+  const response = await api.get<FlashcardItem>(`/flashcardSets/${flashcardSetId}/flashcards/${flashcardId}`);
   return response.data;
 };
 
 export const createFlashcard = async (
-  data: Omit<FlashcardType, 'id'>
-): Promise<FlashcardType> => {
-  const response = await api.post<FlashcardType>('/flashcards', data);
+  flashcardSetId: string,
+  data: Omit<FlashcardItem, 'id'>
+): Promise<FlashcardItem> => {
+  const response = await api.post<FlashcardItem>(`/flashcardSets/${flashcardSetId}/flashcards`, data);
   return response.data;
 };
 
 export const updateFlashcard = async (
-  id: string,
-  data: Omit<FlashcardType, 'id'>
-): Promise<FlashcardType> => {
-  const response = await api.put<FlashcardType>(`/flashcards/${id}`, data);
+  flashcardSetId: string,
+  flashcardId: string,
+  data: Omit<FlashcardItem, 'id'>
+): Promise<FlashcardItem> => {
+  const response = await api.put<FlashcardItem>(`/flashcardSets/${flashcardSetId}/flashcards/${flashcardId}`, data);
   return response.data;
 };
 
-export const deleteFlashcard = async (id: string): Promise<void> => {
-  await api.delete(`/flashcards/${id}`);
+export const deleteFlashcard = async (flashcardSetId:string,flashcardId: string): Promise<void> => {
+  await api.delete(`/flashcardSets/${flashcardSetId}/flashcards/${flashcardId}`);
 };

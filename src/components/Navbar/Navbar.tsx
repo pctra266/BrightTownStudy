@@ -21,7 +21,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Flashcards", path: "/flashcards" },
-    { name: "newNameonNav", path: "/about" },
+      { name: "library", path: "/library" },
   ];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(

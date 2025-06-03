@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import {
-  getAllFlashcards,
+  getFlashcardsInSet,
   deleteFlashcard,
 } from "../services/flashcardService";
-import type { FlashcardType } from "../types";
+import type { FlashcardSet } from "../types";
 
 export const useFlashcards = () => {
-  const [flashcards, setFlashcards] = useState<FlashcardType[]>([]);
+  const [flashcards, setFlashcards] = useState<FlashcardSet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
@@ -16,8 +16,8 @@ export const useFlashcards = () => {
 
   const fetchData = async () => {
     try {
-      const list = await getAllFlashcards();
-      setFlashcards(list);
+      const list = await getFlashcardsInSet();
+      // setFlashcards('1',list);
     } catch (err) {
       setError("Không tải được danh sách flashcards");
       console.error(err);
@@ -28,7 +28,7 @@ export const useFlashcards = () => {
 
   const removeFlashcard = async (id: string) => {
     try {
-      await deleteFlashcard(id);
+      await deleteFlashcard('1',id);
       setFlashcards((prev) => prev.filter((f) => f.id !== id));
     } catch (err) {
       console.error(err);
