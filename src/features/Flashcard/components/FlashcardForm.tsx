@@ -17,6 +17,8 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
     ]
   );
 
+  const minimumFlashcards = 2;
+
   useEffect(() => {
     if (FlashcardSet) {
       setName(FlashcardSet.name);
@@ -37,6 +39,14 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
       { id: '', question: '', answer: '' }
     ]);
   };
+
+  const handleDelte = () =>{
+    if (flashcards.length <= minimumFlashcards) {
+      alert('You must have at least two flashcards.');
+    }else{
+    return deleteCard;
+    }
+  }
 
   const deleteCard = (index: number) => {
     setFlashcards(prev => prev.filter((_, i) => i !== index));
@@ -82,7 +92,7 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
        </label>
       {
         flashcards.map((flashcard: FlashcardItem,index) => (
-          <Flashcard key={index} flashcard={flashcard} onDelete={() => deleteCard(index)} onChange={(field, value) => updateCard(index, field, value)} />
+          <Flashcard key={index} flashcard={flashcard} onDelete={handleDelte} onChange={(field, value) => updateCard(index, field, value)} />
         ))
       }
       <button type='button' onClick={addMoreCard} >Add more card</button>
