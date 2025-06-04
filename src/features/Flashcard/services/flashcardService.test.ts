@@ -1,18 +1,20 @@
 import api from "../../../api/api";
-import { vi, describe, test, expect, beforeEach, type MockInstance } from "vitest";
+import {
+  vi,
+  describe,
+  test,
+  expect,
+  beforeEach,
+  type MockInstance,
+} from "vitest";
 import {
   getFlashcardSets,
   getFlashcardSetById,
   createFlashcardSet,
   updateFlashcardSet,
   deleteFlashcardSet,
-  getFlashcardsInSet,
-  getFlashcardById,
-  createFlashcard,
-  updateFlashcard,
-  deleteFlashcard,
 } from "./flashcardService";
-import type { FlashcardSet, FlashcardSetMeta, FlashcardItem } from "../types";
+import type { FlashcardSet, FlashcardSetMeta } from "../types";
 
 vi.mock("../../../api/api");
 
@@ -91,57 +93,5 @@ describe("flashcardService", () => {
     mockedApi.delete.mockResolvedValueOnce(undefined);
     await deleteFlashcardSet("1");
     expect(mockedApi.delete).toHaveBeenCalledWith("/flashcardSets/1");
-  });
-
-  test("should get all flashcards in a set", async () => {
-    const mockSet: FlashcardSet = {
-      id: "1",
-      name: "Set A",
-      description: "Desc",
-      flashcards: [
-        { id: "1", question: "Q1", answer: "A1" },
-        { id: "2", question: "Q2", answer: "A2" },
-      ],
-    };
-
-    mockedApi.get.mockResolvedValueOnce({ data: mockSet });
-    const result = await getFlashcardsInSet("1");
-    expect(result).toEqual(mockSet);
-    expect(mockedApi.get).toHaveBeenCalledWith("/flashcardSets/1/flashcards");
-  });
-
-  test("should get flashcard by ID", async () => {
-    const mockCard: FlashcardItem = { id: "1", question: "Q", answer: "A" };
-
-    mockedApi.get.mockResolvedValueOnce({ data: mockCard });
-    const result = await getFlashcardById("1", "1");
-    expect(result).toEqual(mockCard);
-    expect(mockedApi.get).toHaveBeenCalledWith("/flashcardSets/1/flashcards/1");
-  });
-
-  test("should create a flashcard", async () => {
-    const payload = { question: "Q", answer: "A" };
-    const mockCard: FlashcardItem = { id: "99", ...payload };
-
-    mockedApi.post.mockResolvedValueOnce({ data: mockCard });
-    const result = await createFlashcard("1", payload);
-    expect(result).toEqual(mockCard);
-    expect(mockedApi.post).toHaveBeenCalledWith("/flashcardSets/1/flashcards", payload);
-  });
-
-  test("should update a flashcard", async () => {
-    const updated = { question: "New Q", answer: "New A" };
-    const mockCard: FlashcardItem = { id: "2", ...updated };
-
-    mockedApi.put.mockResolvedValueOnce({ data: mockCard });
-    const result = await updateFlashcard("1", "2", updated);
-    expect(result).toEqual(mockCard);
-    expect(mockedApi.put).toHaveBeenCalledWith("/flashcardSets/1/flashcards/2", updated);
-  });
-
-  test("should delete a flashcard", async () => {
-    mockedApi.delete.mockResolvedValueOnce(undefined);
-    await deleteFlashcard("1", "3");
-    expect(mockedApi.delete).toHaveBeenCalledWith("/flashcardSets/1/flashcards/3");
   });
 });

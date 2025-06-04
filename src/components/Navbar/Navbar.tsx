@@ -19,9 +19,9 @@ const Navbar = () => {
 
   const pages = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Flashcards", path: "/flashcards" },
-      { name: "library", path: "/library" },
+    { name: "Library", path: "/library" },
+    { name: "Inspiration Hall", path: "/inspo" },
+    { name: "Discussion Hub", path: "/talk" },
   ];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
