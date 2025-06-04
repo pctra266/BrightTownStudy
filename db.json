@@ -1,33 +1,6 @@
 {
   "flashcardSets": [
     {
-      "name": "History Facts",
-      "description": "A collection of flashcards about important historical events.",
-      "flashcards": [
-        {
-          "id": "1",
-          "question": "Who was the first President of the United States?",
-          "answer": "George Washington"
-        },
-        {
-          "id": "2",
-          "question": "What year did World War II end?",
-          "answer": "1945"
-        },
-        {
-          "id": "3",
-          "question": "Who discovered America in 1492?",
-          "answer": "Christopher Columbus"
-        },
-        {
-          "id": "4",
-          "question": "What was the name of the ship that sank in 1912?",
-          "answer": "Titanic"
-        }
-      ],
-      "id": "1"
-    },
-    {
       "id": "2",
       "name": "History Facts",
       "description": "A collection of flashcards about important historical events.",
