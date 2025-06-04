@@ -1,48 +1,30 @@
-import React, { use } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
+import {updateFlashcardSet} from "./services/flashcardService";
+import {useFlashcardSet } from "./hooks/useFlashcardSet";
+import ButtonToFlashcardSets from "./components/ButtonToFlashcardSets";
 import FlashcardForm from "./components/FlashcardForm";
 import type { FlashcardSet } from "./types";
-import {
-  getFlashcardSetById,
-  updateFlashcardSet,
-} from "./services/flashcardService";
 
 const FlashcardsUpdate = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [flashcardSet, setFlashcardSet] = React.useState<FlashcardSet>();
 
-  React.useEffect(() => {
-    const fetchFlashcardSet = async () => {
-      if (id) {
-        const response = await getFlashcardSetById(id);
-        setFlashcardSet(response);
-      }
-    };
-    fetchFlashcardSet();
-  }, []);
-  const testDelete = (id: string) => {};
+  const { flashcardSet } = useFlashcardSet(id || "");
 
   const handleSubmitEidt = async (data: FlashcardSet) => {
-    if (!id) return;
-    try {
+    if (id) {
       await updateFlashcardSet(id, data);
-      alert('Cập nhật thành công!');
-      navigate('/flashcard'); // hoặc chuyển hướng sau khi cập nhật
-    } catch (error) {
-      console.error('Lỗi khi cập nhật flashcard set:', error);
-      alert('Cập nhật thất bại!');
+      navigate("/flashcard");
+    } else {
+      alert("Không tìm thấy ID của bộ flashcard để cập nhật.");
+      navigate("/flashcard");
     }
   };
+  
   return (
     <>
-      <button onClick={() => navigate("/flashcard")}>Back</button>
-      <h1>Current ID: {id}</h1>
-      <FlashcardForm
-        FlashcardSet={flashcardSet}
-        onDelete={testDelete}
-        onSubmit={handleSubmitEidt}
-      />
+      <ButtonToFlashcardSets />
+      <FlashcardForm FlashcardSet={flashcardSet} onSubmit={handleSubmitEidt} />
     </>
   );
 };

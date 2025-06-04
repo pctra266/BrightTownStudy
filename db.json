@@ -99,70 +99,58 @@
       ]
     },
     {
-      "name": "tôi đã thành công phượn 2 g",
-      "description": "ádf",
+      "id": "d8dd",
+      "name": "new Set",
+      "description": "setNew",
       "flashcards": [
         {
-          "id": "fa8c3832-9573-4d64-9e39-277969c401a4",
-          "question": "đ",
-          "answer": "đấ"
+          "id": "b22beb81-8a72-4318-b735-841417182342",
+          "question": "1",
+          "answer": "ansưẻ2"
         },
         {
-          "id": "3807263a-67ec-4e5a-8771-19213bb4c5be",
-          "question": "đadd",
-          "answer": "ádfád"
-        }
-      ],
-      "id": "4d4a"
-    },
-    {
-      "id": "118c",
-      "name": "ádfsad",
-      "description": "ádf",
-      "flashcards": [
-        {
-          "id": "8789b82b-811b-4c9f-a827-9498acee454c",
-          "question": "đ",
-          "answer": "đấ"
+          "id": "e8825ef2-d576-412e-96d9-f3141dfdf0b2",
+          "question": "2",
+          "answer": "444"
         },
         {
-          "id": "6af81d4c-0727-411c-a36c-7660635d5041",
-          "question": "đa",
-          "answer": "ádfád"
+          "id": "630bf680-796e-4d07-85fe-098a1883f241",
+          "question": "3",
+          "answer": "4444"
         }
       ]
     },
     {
-      "id": "3eb1",
-      "name": "ádfsad",
-      "description": "ádf",
+      "id": "325f",
+      "name": "test",
+      "description": "tao moi",
       "flashcards": [
         {
-          "id": "fa8c3832-9573-4d64-9e39-277969c401a4",
-          "question": "đ",
-          "answer": "đấ"
+          "id": "1a7f7570-d2fe-4d05-8fcc-3eaa8197f939",
+          "question": "fàd",
+          "answer": "ádfádf"
         },
         {
-          "id": "364d1d1d-0859-43b9-877a-3578cc1afd3f",
-          "question": "new in here",
-          "answer": "huhuhehê"
+          "id": "2175a4c6-9322-4251-89a9-fc0d1a8458f4",
+          "question": "dd",
+          "answer": "bb"
         }
       ]
     },
     {
-      "id": "e08d",
-      "name": "new quest hehe",
-      "description": "huhu",
+      "id": "751c",
+      "name": "công phượng",
+      "description": "gà rán",
       "flashcards": [
         {
-          "id": "9436db8a-ddc2-473c-b33d-179056564578",
-          "question": "lelel",
-          "answer": "lulu"
+          "id": "d0c12525-96be-4d04-9455-580b1db3f088",
+          "question": "rán gà",
+          "answer": "rôi rán"
         },
         {
-          "id": "137d810e-407f-4899-82f7-05aa601b2d8e",
-          "question": "sdfsd",
-          "answer": "123456"
+          "id": "7d58db99-9324-4e89-a049-0bc996a467a8",
+          "question": "mỡ mèo",
+          "answer": "mỡ gà"
         }
       ]
     }
