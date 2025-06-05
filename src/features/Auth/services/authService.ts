@@ -1,41 +1,5 @@
 import api from "../../../api/api";
-
-interface Account {
-    id: string;
-    username: string;
-    password: string;
-    role: string;
-}
-
-interface Role {
-    id: string;
-    role: string;
-}
-
-interface LoginResponse {
-    success: boolean;
-    user?: {
-        id: string;
-        username: string;
-        role: string;
-    };
-    token?: string;
-    refreshToken?: string;
-    error?: string;
-}
-
-interface RegisterResponse {
-    success: boolean;
-    message: string;
-    token?: string;
-    refreshToken?: string;
-}
-
-interface TokenRefreshResponse {
-    success: boolean;
-    token?: string;
-    error?: string;
-}
+import type { Account, Role, LoginResponse, RegisterResponse, TokenRefreshResponse } from "../types";
 
 export const authService = {
     async login(username: string, password: string, rememberMe: boolean = false): Promise<LoginResponse> {

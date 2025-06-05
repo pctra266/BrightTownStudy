@@ -10,11 +10,10 @@ import NotFound from "./pages/NotFound";
 import FlashcardsPlay from "./features/Flashcard/FlashcardsPlay";
 import InspirationHall from "./pages/InspirationHall";
 import DiscussionHub from "./pages/DiscussionHub";
-import Blog from "./pages/Blog";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import User from "./pages/User";
-import Admin from "./pages/Admin";
+import Login from "./features/Auth/components/Login";
+import SignUp from "./features/Auth/components/SignUp";
+import User from "./features/Auth/components/User";
+import Admin from "./features/Auth/components/Admin";
 
 const ProtectedRoute: React.FC<{
   children: React.ReactNode;
@@ -49,7 +48,6 @@ const App = () => {
             <Route path="/flashcard/:id/play" element={<FlashcardsPlay />} />
             <Route path="/inspo" element={<InspirationHall />} />
             <Route path="/talk" element={<DiscussionHub />} />
-            <Route path="/blog" element={<Blog />} />
             <Route
               path="/user"
               element={

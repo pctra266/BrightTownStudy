@@ -41,7 +41,6 @@ const PAGES: readonly NavPage[] = [
   { name: "Library", path: "/library" },
   { name: "Inspiration Hall", path: "/inspo" },
   { name: "Discussion Hub", path: "/talk" },
-  { name: "Blog", path: "/blog" },
 ] as const;
 
 const NAVIGATION_TABS = PAGES.slice(1);

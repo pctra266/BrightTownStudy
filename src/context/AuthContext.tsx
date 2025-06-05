@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { authService } from "../features/Flashcard/services/authService";
+import { authService } from "../features/Auth/services/authService";
 
 interface User {
   id: string;
