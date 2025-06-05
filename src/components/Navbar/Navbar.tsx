@@ -1,179 +1,308 @@
 import * as React from "react";
-import { Link, useLocation } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  MenuItem,
+  Tabs,
+  Tab,
+  Stack,
+  Button,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import CastForEducationIcon from "@mui/icons-material/CastForEducation";
+import { useTheme } from "@mui/material/styles";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import { useAuth } from "../../context/AuthContext";
 
-const Navbar = () => {
+interface LinkTabProps {
+  label: string;
+  to: string;
+}
+
+interface NavPage {
+  name: string;
+  path: string;
+}
+
+const LinkTab = React.memo(({ label, to }: LinkTabProps) => (
+  <Tab component={Link} label={label} to={to} />
+));
+
+LinkTab.displayName = "LinkTab";
+
+const PAGES: readonly NavPage[] = [
+  { name: "Home", path: "/" },
+  { name: "Library", path: "/library" },
+  { name: "Inspiration Hall", path: "/inspo" },
+  { name: "Discussion Hub", path: "/talk" },
+  { name: "Blog", path: "/blog" },
+] as const;
+
+const NAVIGATION_TABS = PAGES.slice(1);
+
+const BRAND_NAME = "Bright Town Study";
+
+const COMMON_TYPOGRAPHY_STYLES = {
+  fontFamily: "monospace",
+  fontWeight: 700,
+  letterSpacing: ".0.5rem",
+  textDecoration: "none",
+} as const;
+
+const useNavbarStyles = (theme: any) =>
+  React.useMemo(
+    () => ({
+      brandColor: theme.palette.mode === "light" ? "inherit" : "#2196f3",
+      tabStyles: {
+        "& .MuiTab-root": {
+          color: `${theme.palette.mode === "light" ? "white" : "#2196f3"} `,
+          "&.Mui-selected": {
+            color: `${theme.palette.mode === "light" ? "white" : "#2196f3"} `,
+          },
+          "&:hover": {
+            color: `${theme.palette.mode === "light" ? "white" : "#2196f3"} `,
+          },
+          "&:focus": {
+            color: `${theme.palette.mode === "light" ? "white" : "#2196f3"} `,
+          },
+        },
+        "& .MuiTabs-indicator": {
+          backgroundColor: `${
+            theme.palette.mode === "light" ? "white" : "#2196f3"
+          } `,
+        },
+      },
+      signUpButtonStyles: {
+        ...(theme.palette.mode === "light" && {
+          backgroundColor: "white",
+          borderColor: "white",
+          "&:hover": {
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            borderColor: "white",
+          },
+        }),
+      },
+    }),
+    [theme.palette.mode]
+  );
+
+const Navbar = React.memo(() => {
   const location = useLocation();
-  const isActive = (path: string) => location.pathname === path;
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const styles = useNavbarStyles(theme);
+  const { user, logout, isAuthenticated } = useAuth();
 
-  const pages = [
-    { name: "Home", path: "/" },
-    { name: "Library", path: "/library" },
-    { name: "Inspiration Hall", path: "/inspo" },
-    { name: "Discussion Hub", path: "/talk" },
-  ];
-
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+  const [anchorElNav, setAnchorElNav] = React.useState<HTMLElement | null>(
     null
   );
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  const handleOpenNavMenu = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorElNav(event.currentTarget);
+    },
+    []
+  );
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = React.useCallback(() => {
     setAnchorElNav(null);
-  };
+  }, []);
+
+  const handleTabChange = React.useCallback(() => {}, []);
+
+  const handleLogout = React.useCallback(() => {
+    logout();
+    window.location.href = "/";
+  }, [logout]);
+
+  const tabValue = React.useMemo(() => {
+    const tabIndex = NAVIGATION_TABS.findIndex((page) => {
+      if (page.path === "/") {
+        return location.pathname === "/";
+      }
+      return (
+        location.pathname === page.path ||
+        location.pathname.startsWith(page.path + "/")
+      );
+    });
+    return tabIndex >= 0 ? tabIndex : false;
+  }, [location.pathname]);
+
+  const menuItems = React.useMemo(
+    () =>
+      PAGES.map(({ name, path }) => (
+        <MenuItem key={path} onClick={handleCloseNavMenu} disableGutters>
+          <Link
+            to={path}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              width: "100%",
+              display: "block",
+              padding: "6px 16px",
+            }}
+          >
+            {name}
+          </Link>
+        </MenuItem>
+      )),
+    [handleCloseNavMenu]
+  );
+
+  const navigationTabs = React.useMemo(
+    () =>
+      NAVIGATION_TABS.map(({ name, path }) => (
+        <LinkTab key={path} label={name} to={path} />
+      )),
+    []
+  );
 
   return (
-    <>
-      <AppBar position="static">
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <CastForEducationIcon
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-            />
-            <Typography
-              variant="h6"
-              noWrap
-              component={Link}
-              to="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".0.5rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              Bright Town Study
-            </Typography>
+    <AppBar position="static" color="secondary">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          {/* Desktop Logo */}
+          <CastForEducationIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
+          <Typography
+            variant="h6"
+            noWrap
+            component={Link}
+            to="/"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              color: styles.brandColor,
+              ...COMMON_TYPOGRAPHY_STYLES,
+            }}
+          >
+            {BRAND_NAME}
+          </Typography>
 
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "flex", md: "none" },
-                justifyContent: "flex-end",
-              }}
+          {/* Mobile Menu */}
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              justifyContent: "flex-end",
+            }}
+          >
+            <IconButton
+              size="large"
+              aria-label="Open navigation menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
             >
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{ display: { xs: "block", md: "none" } }}
-              >
-                {pages.map(({ name, path }) => (
-                  <MenuItem
-                    key={path}
-                    onClick={handleCloseNavMenu}
-                    disableGutters
-                  >
-                    <Link
-                      to={path}
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                        display: "block",
-                        padding: "6px 16px",
-                      }}
-                    >
-                      {name}
-                    </Link>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{ display: { xs: "block", md: "none" } }}
+            >
+              {menuItems}
+            </Menu>
+          </Box>
 
-            <CastForEducationIcon
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-            />
-            <Typography
-              variant="h5"
-              noWrap
-              component={Link}
-              to="/"
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".0.5rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              Bright Town Study
-            </Typography>
+          {/* Mobile Logo */}
+          <CastForEducationIcon
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
+          <Typography
+            variant="h5"
+            noWrap
+            component={Link}
+            to="/"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              color: styles.brandColor,
+              ...COMMON_TYPOGRAPHY_STYLES,
+            }}
+          >
+            {BRAND_NAME}
+          </Typography>
 
-            <Box
-              sx={{
-                ml: "auto",
-                display: { xs: "none", md: "flex" },
-                alignItems: "center",
-              }}
+          {/* Desktop Navigation Tabs */}
+          <Box
+            sx={{
+              flex: 1,
+              display: { xs: "none", md: "flex" },
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Tabs
+              value={tabValue}
+              onChange={handleTabChange}
+              aria-label="Navigation tabs"
+              role="navigation"
+              sx={styles.tabStyles}
             >
-              {pages.map(({ name, path }) => (
+              {navigationTabs}
+            </Tabs>
+          </Box>
+
+          {/* Auth Buttons */}
+          <Stack direction="row" spacing={2} sx={{ mr: 1 }}>
+            {isAuthenticated ? (
+              <>
                 <Button
-                  key={path}
-                  component={Link}
-                  to={path}
-                  onClick={handleCloseNavMenu}
-                  sx={{
-                    my: 2,
-                    color: "inherit",
-                    display: "block",
-                    textTransform: "none",
-                    fontWeight: isActive(path) ? "bold" : "normal",
-                    borderBottom: isActive(path)
-                      ? "2px solid currentColor"
-                      : "none",
-                  }}
+                  variant="outlined"
+                  sx={styles.signUpButtonStyles}
+                  disabled
                 >
-                  {name.toUpperCase()}
+                  {user?.username}-{user?.role}
                 </Button>
-              ))}
-              <ThemeToggle />
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </>
+                <Button variant="contained" onClick={handleLogout}>
+                  Log Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  component={Link}
+                  to="/register"
+                  variant="outlined"
+                  sx={styles.signUpButtonStyles}
+                >
+                  Sign up
+                </Button>
+                <Button component={Link} to="/login" variant="contained">
+                  Log in
+                </Button>
+              </>
+            )}
+          </Stack>
+
+          <ThemeToggle />
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
-};
+});
+
+Navbar.displayName = "Navbar";
 
 export default Navbar;

@@ -12,7 +12,7 @@ import {
   Brightness7,
   SettingsBrightness,
 } from "@mui/icons-material";
-import { useThemeMode } from "../../contexts/ThemeContext";
+import { useThemeMode } from "../../context/ThemeContext";
 
 const ThemeToggle = () => {
   const { mode, setMode, actualTheme } = useThemeMode();

@@ -19,7 +19,7 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({FlashcardSetMeta: FlashcardS
             <button onClick={() => onPlay(FlashcardSet.id)} >Play</button>
         </div>
     </div>
-  )
-}
+  );
+};
 
-export default FlashcardSet
+export default FlashcardSet;

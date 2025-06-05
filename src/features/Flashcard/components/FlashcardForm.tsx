@@ -12,8 +12,8 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
   const [description, setDescription] = useState(FlashcardSet?.description || '');
   const [flashcards, setFlashcards] = useState<FlashcardItem[]>(
     FlashcardSet?.flashcards || [
-      { id: '', question: '', answer: '' },
-      { id: '', question: '', answer: '' }
+      { id: "", question: "", answer: "" },
+      { id: "", question: "", answer: "" },
     ]
   );
 
@@ -23,21 +23,20 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
     if (FlashcardSet) {
       setName(FlashcardSet.name);
       setDescription(FlashcardSet.description);
-      setFlashcards(FlashcardSet.flashcards.length > 0
-        ? FlashcardSet.flashcards
-        : [
-            { id: '', question: '', answer: '' },
-            { id: '', question: '', answer: '' }
-          ]
+      setFlashcards(
+        Array.isArray(FlashcardSet.flashcards) &&
+          FlashcardSet.flashcards.length > 0
+          ? FlashcardSet.flashcards
+          : [
+              { id: "", question: "", answer: "" },
+              { id: "", question: "", answer: "" },
+            ]
       );
     }
   }, [FlashcardSet]);
 
   const addMoreCard = () => {
-    setFlashcards(prev => [
-      ...prev,
-      { id: '', question: '', answer: '' }
-    ]);
+    setFlashcards((prev) => [...prev, { id: "", question: "", answer: "" }]);
   };
 
   const handleDelte = () =>{
@@ -58,13 +57,14 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
       name: name.trim(),
       description: description.trim(),
       flashcards: flashcards
-        .filter(f => f.question.trim() !== '' || f.answer.trim() !== '')
-        .map(f => ({
+        .filter((f) => f.question.trim() !== "" || f.answer.trim() !== "")
+        .map((f) => ({
           id: f.id || crypto.randomUUID(),
           question: f.question.trim(),
-          answer: f.answer.trim()
-        }))
+          answer: f.answer.trim(),
+        })),
     };
+
       if (FlashcardSet?.id) {
         onSubmit({ ...payload, id: FlashcardSet.id });
       } else {
@@ -80,7 +80,6 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
     });
   };
 
-  
   return (
     <>
     <form onSubmit={handleSubmit}>
@@ -100,8 +99,6 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
     </form>
      
     </>
-
-
   );
 };
 

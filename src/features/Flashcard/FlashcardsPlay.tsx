@@ -28,6 +28,7 @@ const FlashcardsPlay = () => {
   };
 
   if (!id) return <div>Invalid flashcard set ID.</div>;
+
   if (!flashcardSet || !flashcardSet.flashcards || flashcardSet.flashcards.length === 0) {
     return <div>No flashcards found in this set.</div>;
   }
