@@ -146,6 +146,12 @@
       "username": "tqt",
       "password": "123456",
       "role": "2"
+    },
+    {
+      "id": "4",
+      "username": "pctra266",
+      "password": "pctra266",
+      "role": "2"
     }
   ],
   "role": [

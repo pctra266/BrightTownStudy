@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Typography, Paper, Box } from "@mui/material";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 
-const Admin: React.FC = () => {
+const User: React.FC = () => {
   const { user } = useAuth();
 
   return (
@@ -10,14 +10,13 @@ const Admin: React.FC = () => {
       <Paper elevation={3} sx={{ p: 4 }}>
         <Box textAlign="center">
           <Typography variant="h4" gutterBottom>
-            Admin Dashboard
+            User Dashboard
           </Typography>
           <Typography variant="h6" color="text.secondary" gutterBottom>
             Welcome, {user?.username}!
           </Typography>
           <Typography variant="body1">
-            You are logged in as an administrator. You have full access to the
-            system.
+            You are logged in as a user. This is your personal dashboard.
           </Typography>
         </Box>
       </Paper>
@@ -25,4 +24,4 @@ const Admin: React.FC = () => {
   );
 };
 
-export default Admin;
+export default User;
