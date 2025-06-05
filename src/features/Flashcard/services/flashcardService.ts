@@ -1,5 +1,5 @@
-import api from "../../../api/api"; 
-import type { FlashcardSet,FlashcardSetMeta } from "../types";
+import api from "../../../api/api";
+import type { FlashcardSet, FlashcardSetMeta } from "../types";
 
 export const getFlashcardSets = async () => {
   const response = await api.get<FlashcardSetMeta[]>('/flashcardSets');
@@ -24,6 +24,3 @@ export const updateFlashcardSet = async (flashcardSetId: string, data: Omit<Flas
 export const deleteFlashcardSet = async (flashcardSetId: string): Promise<void> => {
   await api.delete(`/flashcardSets/${flashcardSetId}`);
 }
-
-
-

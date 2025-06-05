@@ -1,28 +1,23 @@
-import React from 'react'
-import FlashcardForm from './components/FlashcardForm'
-import type { FlashcardSet } from './types'
-import { useNavigate } from 'react-router-dom'
+import FlashcardForm from "./components/FlashcardForm";
+import ButtonToFlashcardSets from "./components/ButtonToFlashcardSets";
+import { createFlashcardSet } from "./services/flashcardService";
+import type { FlashcardSet } from "./types";
+import { useNavigate } from "react-router-dom";
 
 const FlashCardsCreate = () => {
-
   const navigate = useNavigate();
 
-  const testDelete= (id:string) =>{
-    
-  }
-
- 
+  const handleSubmitCreate = async (data: Omit<FlashcardSet, "id">) => {
+    await createFlashcardSet(data);
+    navigate("/flashcard");
+  };
 
   return (
     <>
-    <button onClick={()=> navigate('/flashcard')} >Back</button>
-    <FlashcardForm onDelete={function (id: string): void {
-        throw new Error('Function not implemented.')
-      } } onSubmit={function (): void {
-        throw new Error('Function not implemented.')
-      } } />
+      <ButtonToFlashcardSets />
+      <FlashcardForm onSubmit={handleSubmitCreate} />
     </>
-  )
-}
+  );
+};
 
-export default FlashCardsCreate
+export default FlashCardsCreate;

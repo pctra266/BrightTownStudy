@@ -1,0 +1,261 @@
+import api from "../../../api/api";
+
+interface Account {
+    id: string;
+    username: string;
+    password: string;
+    role: string;
+}
+
+interface Role {
+    id: string;
+    role: string;
+}
+
+interface LoginResponse {
+    success: boolean;
+    user?: {
+        id: string;
+        username: string;
+        role: string;
+    };
+    token?: string;
+    refreshToken?: string;
+    error?: string;
+}
+
+interface RegisterResponse {
+    success: boolean;
+    message: string;
+    token?: string;
+    refreshToken?: string;
+}
+
+interface TokenRefreshResponse {
+    success: boolean;
+    token?: string;
+    error?: string;
+}
+
+export const authService = {
+    async login(username: string, password: string, rememberMe: boolean = false): Promise<LoginResponse> {
+        try {
+            const accountResponse = await api.get('/account');
+            const accounts: Account[] = accountResponse.data;
+
+            const account = accounts.find(
+                (acc: Account) => acc.username === username && acc.password === password
+            );
+
+            if (!account) {
+                return {
+                    success: false,
+                    error: "Invalid username or password"
+                };
+            }
+
+            const roleResponse = await api.get('/role');
+            const roles: Role[] = roleResponse.data;
+            const userRole = roles.find((role: Role) => role.id === account.role);
+
+
+            const userData = {
+                id: account.id,
+                username: account.username,
+                role: userRole?.role || "user"
+            };
+
+            const token = this.generateToken(userData, rememberMe);
+            const refreshToken = this.generateRefreshToken(userData, rememberMe);
+
+
+            if (rememberMe) {
+
+                localStorage.setItem('token', token);
+                localStorage.setItem('refreshToken', refreshToken);
+                localStorage.setItem('rememberMe', 'true');
+            } else {
+
+                sessionStorage.setItem('token', token);
+                sessionStorage.setItem('refreshToken', refreshToken);
+                localStorage.removeItem('rememberMe');
+            }
+
+            return {
+                success: true,
+                user: userData,
+                token,
+                refreshToken
+            };
+        } catch (error) {
+            console.error("Login error:", error);
+            return {
+                success: false,
+                error: "An error occurred during login"
+            };
+        }
+    },
+
+    async register(username: string, password: string): Promise<RegisterResponse> {
+        try {
+            const accountResponse = await api.get('/account');
+            const accounts: Account[] = accountResponse.data;
+
+            const existingAccount = accounts.find(
+                (acc: Account) => acc.username === username
+            );
+
+            if (existingAccount) {
+                return {
+                    success: false,
+                    message: "Username already exists. Please choose a different username."
+                };
+            }
+
+            const maxId = accounts.reduce((max, acc) => {
+                const currentId = parseInt(acc.id);
+                return currentId > max ? currentId : max;
+            }, 0);
+
+            const newId = (maxId + 1).toString();
+
+            const newAccount = {
+                id: newId,
+                username: username,
+                password: password,
+                role: "2"
+            };
+
+            await api.post('/account', newAccount);
+
+
+            const userData = {
+                id: newId,
+                username: username,
+                role: "user"
+            };
+
+            const token = this.generateToken(userData);
+            const refreshToken = this.generateRefreshToken(userData);
+
+            return {
+                success: true,
+                message: "Account created successfully!",
+                token,
+                refreshToken
+            };
+        } catch (error) {
+            console.error("Register error:", error);
+            return {
+                success: false,
+                message: "An error occurred during registration"
+            };
+        }
+    },
+
+    async refreshToken(): Promise<TokenRefreshResponse> {
+        try {
+            const isRemembered = localStorage.getItem('rememberMe') === 'true';
+            const refreshToken = isRemembered
+                ? localStorage.getItem('refreshToken')
+                : sessionStorage.getItem('refreshToken');
+
+            if (!refreshToken) {
+                return {
+                    success: false,
+                    error: "No refresh token available"
+                };
+            }
+
+            const userData = this.verifyToken(refreshToken);
+            if (!userData) {
+                return {
+                    success: false,
+                    error: "Invalid refresh token"
+                };
+            }
+
+            const newToken = this.generateToken(userData, isRemembered);
+
+            if (isRemembered) {
+                localStorage.setItem('token', newToken);
+            } else {
+                sessionStorage.setItem('token', newToken);
+            }
+
+            return {
+                success: true,
+                token: newToken
+            };
+        } catch (error) {
+            console.error("Token refresh error:", error);
+            return {
+                success: false,
+                error: "Failed to refresh token"
+            };
+        }
+    },
+
+
+    generateToken(userData: any, rememberMe: boolean = false): string {
+        const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+        const expiration = rememberMe
+            ? Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60)
+            : Math.floor(Date.now() / 1000) + (60 * 1);
+
+        const payload = btoa(JSON.stringify({
+            ...userData,
+            exp: expiration,
+            iat: Math.floor(Date.now() / 1000)
+        }));
+        const signature = btoa('mock-signature');
+        return `${header}.${payload}.${signature}`;
+    },
+
+    generateRefreshToken(userData: any, rememberMe: boolean = false): string {
+        const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+        const expiration = rememberMe
+            ? Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60)
+            : Math.floor(Date.now() / 1000) + (24 * 60 * 60);
+
+        const payload = btoa(JSON.stringify({
+            ...userData,
+            exp: expiration,
+            iat: Math.floor(Date.now() / 1000)
+        }));
+        const signature = btoa('mock-refresh-signature');
+        return `${header}.${payload}.${signature}`;
+    },
+
+    verifyToken(token: string): any {
+        try {
+            const parts = token.split('.');
+            if (parts.length !== 3) return null;
+
+            const payload = JSON.parse(atob(parts[1]));
+
+
+            if (payload.exp < Math.floor(Date.now() / 1000)) {
+                return null;
+            }
+
+            return payload;
+        } catch (error) {
+            return null;
+        }
+    },
+
+    logout(): void {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('user');
+        localStorage.removeItem('rememberMe');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('refreshToken');
+        sessionStorage.removeItem('user');
+    },
+
+    getToken(): string | null {
+        return localStorage.getItem('token') || sessionStorage.getItem('token');
+    }
+};

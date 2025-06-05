@@ -1,40 +1,36 @@
-import React, { useEffect } from 'react'
-import FlashcardSets from './components/FlashcardSets';
-import {getFlashcardSets, createFlashcardSet, deleteFlashcardSet} from './services/flashcardService'
-import type { FlashcardItem, FlashcardSetMeta } from './types';
-import { useNavigate } from 'react-router-dom';
+import FlashcardSets from "./components/FlashcardSets";
+import { deleteFlashcardSet } from "./services/flashcardService";
+import { useNavigate } from "react-router-dom";
+import { useFlashcardSets } from "./hooks/useFlashcardSets";
 
 const Flashcards = () => {
-  const [flashcardSets, setFlashcardSets] = React.useState<FlashcardSetMeta[]>([]);
   const navigate = useNavigate();
-  useEffect( () => {
-    const fetchFlashcardSet = async () =>{
-      setFlashcardSets(await getFlashcardSets());
-    }
-    fetchFlashcardSet();
-  },[])
+  const { flashcardSets, fetchData: fetchFlashcardSetData } =
+    useFlashcardSets();
 
-  const handleCreate = async (data: {
-    name: string;
-    description: string;
-    flashcards: FlashcardItem[];}) => {
-
-      await createFlashcardSet(data);
-  }
-
-  const handleDelete = async (id: string) => { // chay thanh cong
+  const handleCreate = () => {
+    navigate(`/flashcard/new`);
+  };
+  const handleDelete = async (id: string) => {
     await deleteFlashcardSet(id);
-    const newFlashcardSets = await getFlashcardSets();
-    setFlashcardSets(newFlashcardSets);
-  }
-
+    fetchFlashcardSetData();
+  };
   const handleEdit = (id: string) => {
     navigate(`/flashcard/edit/${id}`);
-  }
+  };
+  const handlePlay = (id: string) => {
+    navigate(`/flashcard/${id}/play`);
+  };
 
   return (
-    <FlashcardSets flashcardSets={flashcardSets} onCreate={()=>navigate(`/flashcard/new`)} onDelete={handleDelete} onEdit={handleEdit} />
-  )
-}
+    <FlashcardSets
+      flashcardSets={flashcardSets}
+      onCreate={handleCreate}
+      onDelete={handleDelete}
+      onEdit={handleEdit}
+      onPlay={handlePlay}
+    />
+  );
+};
 
-export default Flashcards
+export default Flashcards;
