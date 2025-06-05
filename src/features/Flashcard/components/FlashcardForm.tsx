@@ -1,20 +1,15 @@
-import { useState, useEffect } from "react";
-import Flashcard from "./FlashcardItem";
-import type { FlashcardItem, FlashcardSet } from "../types";
+import  { useState,useEffect } from 'react';
+import Flashcard from './FlashcardItem';
+import type { FlashcardItem,FlashcardSet } from '../types';
 
 interface FlashcardFormProps {
-  FlashcardSet?: FlashcardSet;
-  onSubmit: (data: any) => void;
+  FlashcardSet?: FlashcardSet,
+  onSubmit: (data:any) => void;
 }
 
-const FlashcardForm: React.FC<FlashcardFormProps> = ({
-  FlashcardSet,
-  onSubmit,
-}) => {
-  const [name, setName] = useState(FlashcardSet?.name || "");
-  const [description, setDescription] = useState(
-    FlashcardSet?.description || ""
-  );
+const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) => {
+  const [name, setName] = useState(FlashcardSet?.name || '');
+  const [description, setDescription] = useState(FlashcardSet?.description || '');
   const [flashcards, setFlashcards] = useState<FlashcardItem[]>(
     FlashcardSet?.flashcards || [
       { id: "", question: "", answer: "" },
@@ -44,21 +39,21 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
     setFlashcards((prev) => [...prev, { id: "", question: "", answer: "" }]);
   };
 
-  const handleDelte = () => {
+  const handleDelte = () =>{
     if (flashcards.length <= minimumFlashcards) {
-      alert("You must have at least two flashcards.");
-    } else {
-      return deleteCard;
+      alert('You must have at least two flashcards.');
+    }else{
+    return deleteCard;
     }
-  };
+  }
 
   const deleteCard = (index: number) => {
-    setFlashcards((prev) => prev.filter((_, i) => i !== index));
+    setFlashcards(prev => prev.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const payload: Omit<FlashcardSet, "id"> = {
+    e.preventDefault(); 
+    const payload: Omit<FlashcardSet, 'id'> = {
       name: name.trim(),
       description: description.trim(),
       flashcards: flashcards
@@ -69,19 +64,16 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
           answer: f.answer.trim(),
         })),
     };
-    if (FlashcardSet?.id) {
-      onSubmit({ ...payload, id: FlashcardSet.id });
-    } else {
-      onSubmit(payload);
-    }
-  };
 
-  const updateCard = (
-    index: number,
-    field: "question" | "answer",
-    value: string
-  ) => {
-    setFlashcards((prev) => {
+      if (FlashcardSet?.id) {
+        onSubmit({ ...payload, id: FlashcardSet.id });
+      } else {
+        onSubmit(payload);
+      }
+  };
+  
+  const updateCard = (index: number, field: 'question' | 'answer', value: string) => {
+    setFlashcards(prev => {
       const updated = [...prev];
       updated[index] = { ...updated[index], [field]: value };
       return updated;
@@ -90,39 +82,22 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          Name:
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label htmlFor="description">
-          Description
-          <input
-            id="description"
-            type="text"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-        </label>
-        {flashcards.map((flashcard: FlashcardItem, index) => (
-          <Flashcard
-            key={index}
-            flashcard={flashcard}
-            onDelete={handleDelte}
-            onChange={(field, value) => updateCard(index, field, value)}
-          />
-        ))}
-        <button type="button" onClick={addMoreCard}>
-          Add more card
-        </button>
-        <button type="submit">Done</button>
-      </form>
+    <form onSubmit={handleSubmit}>
+       <label htmlFor='name'>Name: 
+       <input id='name' type="text" value={name} onChange={(e) => setName(e.target.value)} required/>
+       </label>
+       <label htmlFor="description">Description
+        <input id='description' type="text" onChange={(e) => setDescription(e.target.value)} value={description}/>
+       </label>
+      {
+        flashcards.map((flashcard: FlashcardItem,index) => (
+          <Flashcard key={index} flashcard={flashcard} onDelete={handleDelte} onChange={(field, value) => updateCard(index, field, value)} />
+        ))
+      }
+      <button type='button' onClick={addMoreCard} >Add more card</button>
+      <button type="submit">Done</button>
+    </form>
+     
     </>
   );
 };

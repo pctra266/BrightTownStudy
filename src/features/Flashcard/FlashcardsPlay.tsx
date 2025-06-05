@@ -9,7 +9,7 @@ const FlashcardsPlay = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
-  const { flashcardSet } = useFlashcardSet(id);
+  const {flashcardSet} = useFlashcardSet(id);
 
   const handleFlip = () => {
     setIsFlipped((prev) => !prev);
@@ -28,11 +28,8 @@ const FlashcardsPlay = () => {
   };
 
   if (!id) return <div>Invalid flashcard set ID.</div>;
-  if (
-    !flashcardSet ||
-    !flashcardSet.flashcards ||
-    flashcardSet.flashcards.length === 0
-  ) {
+
+  if (!flashcardSet || !flashcardSet.flashcards || flashcardSet.flashcards.length === 0) {
     return <div>No flashcards found in this set.</div>;
   }
   return (

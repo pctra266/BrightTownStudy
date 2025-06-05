@@ -1,6 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { updateFlashcardSet } from "./services/flashcardService";
-import { useFlashcardSet } from "./hooks/useFlashcardSet";
+
+import {useNavigate, useParams } from "react-router-dom";
+import {updateFlashcardSet} from "./services/flashcardService";
+import {useFlashcardSet } from "./hooks/useFlashcardSet";
 import ButtonToFlashcardSets from "./components/ButtonToFlashcardSets";
 import FlashcardForm from "./components/FlashcardForm";
 import type { FlashcardSet } from "./types";

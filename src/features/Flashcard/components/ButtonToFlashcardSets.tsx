@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate } from 'react-router-dom'
 
 const ButtonToFlashcardSets = () => {
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
-  return <button onClick={() => navigate("/flashcard")}>Back</button>;
-};
+return (<button onClick={()=> navigate('/flashcard')} >Back</button>)
+}
 
-export default ButtonToFlashcardSets;
+export default ButtonToFlashcardSets

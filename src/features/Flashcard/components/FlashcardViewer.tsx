@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FlashcardItem, FlashcardSet } from '../types';
+import type { FlashcardItem } from '../types';
 import './FlashcardViewer.css';
 
 interface FlashcardViewerProps {
