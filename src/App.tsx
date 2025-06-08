@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+
+import "./features/Auth/services/interceptor";
 import Home from "./pages/Home";
 import Library from "./pages/Library";
 import Flashcards from "./features/Flashcard/Flashcards";
@@ -14,6 +16,7 @@ import Login from "./features/Auth/components/Login";
 import SignUp from "./features/Auth/components/SignUp";
 import User from "./features/Auth/components/User";
 import Admin from "./features/Auth/components/Admin";
+import ForgotPassword from "./features/Auth/components/ForgotPassword";
 
 const ProtectedRoute: React.FC<{
   children: React.ReactNode;
@@ -40,6 +43,7 @@ const App = () => {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/library" element={<Library />} />
             <Route path="/flashcard" element={<Flashcards />} />

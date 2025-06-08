@@ -47,15 +47,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const initializeAuth = () => {
-      const token =
-        localStorage.getItem("token") || sessionStorage.getItem("token");
-      const storedUser =
-        localStorage.getItem("user") || sessionStorage.getItem("user");
+      const token = authService.getToken();
+      const storedUser = authService.getUser();
 
       if (token && storedUser) {
         const userData = authService.verifyToken(token);
         if (userData) {
-          setUser(JSON.parse(storedUser));
+          setUser(storedUser);
         } else {
           authService.logout();
           setUser(null);
@@ -67,16 +65,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     initializeAuth();
 
     tokenCheckIntervalRef.current = setInterval(() => {
-      const token =
-        localStorage.getItem("token") || sessionStorage.getItem("token");
-      const currentUser =
-        localStorage.getItem("user") || sessionStorage.getItem("user");
+      const token = authService.getToken();
+      const currentUser = authService.getUser();
 
       if (token && currentUser) {
         const userData = authService.verifyToken(token);
         if (!userData) {
           authService.logout();
           setUser(null);
+          sessionStorage.setItem("sessionExpired", "true");
+
+          const protectedRoutes = ["/user", "/admin"];
+          const currentPath = window.location.pathname;
+
+          if (protectedRoutes.some((route) => currentPath.startsWith(route))) {
+            window.location.href = "/login";
+          }
         }
       }
     }, 30000);
@@ -103,13 +107,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       };
 
       setUser(userData);
-
-      if (rememberMe) {
-        localStorage.setItem("user", JSON.stringify(userData));
-      } else {
-        sessionStorage.setItem("user", JSON.stringify(userData));
-      }
-
       return true;
     }
 
@@ -141,7 +138,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   if (loading) {
-    return;
+    return <div>Loading...</div>;
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

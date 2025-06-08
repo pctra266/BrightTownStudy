@@ -16,6 +16,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAuth } from "../../../context/AuthContext";
+import { authService } from "../services/authService";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -55,13 +56,9 @@ const Login = () => {
 
       if (success) {
         setTimeout(() => {
-          const userInfo = JSON.parse(
-            localStorage.getItem("user") ||
-              sessionStorage.getItem("user") ||
-              "{}"
-          );
+          const userInfo = authService.getUser();
 
-          if (userInfo.role === "admin") {
+          if (userInfo && userInfo.role === "admin") {
             navigate("/admin", { replace: true });
           } else {
             navigate("/user", { replace: true });
@@ -149,18 +146,36 @@ const Login = () => {
                 ),
               }}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  name="rememberMe"
-                  color="primary"
-                />
-              }
-              label="Remember me"
-              sx={{ mt: 1, mb: 1 }}
-            />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                mt: 1,
+                mb: 1,
+              }}
+            >
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    name="rememberMe"
+                    color="primary"
+                  />
+                }
+                label="Remember me"
+              />
+              <MuiLink
+                component={Link}
+                to="/forgot-password"
+                underline="hover"
+                variant="body2"
+              >
+                Forgot your password?
+              </MuiLink>
+            </Box>
+
             <Button
               type="submit"
               fullWidth

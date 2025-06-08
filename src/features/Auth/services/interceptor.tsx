@@ -1,9 +1,9 @@
 import api from "../../../api/api";
+import { getCookie, eraseCookie } from "../../../utils/cookieUtils";
 
 api.interceptors.request.use(
   (config) => {
-    const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
+    const token = getCookie("accessToken");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -25,9 +25,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshToken =
-          localStorage.getItem("refreshToken") ||
-          sessionStorage.getItem("refreshToken");
+        const refreshToken = getCookie("refreshToken");
         if (refreshToken) {
           const { authService } = await import("./authService");
           const refreshResult = await authService.refreshToken();
@@ -41,13 +39,12 @@ api.interceptors.response.use(
         console.error("Token refresh failed:", refreshError);
       }
 
-      localStorage.removeItem("token");
-      localStorage.removeItem("refreshToken");
-      localStorage.removeItem("user");
-      localStorage.removeItem("rememberMe");
-      sessionStorage.removeItem("token");
-      sessionStorage.removeItem("refreshToken");
-      sessionStorage.removeItem("user");
+      eraseCookie("accessToken");
+      eraseCookie("refreshToken");
+      eraseCookie("user");
+      eraseCookie("rememberMe");
+
+      sessionStorage.setItem("sessionExpired", "true");
 
       const protectedRoutes = ["/user", "/admin"];
       const currentPath = window.location.pathname;
