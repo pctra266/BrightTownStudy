@@ -1,4 +1,5 @@
 import api from "../../../api/api";
+import { setCookie, getCookie, eraseCookie } from "../../../utils/cookieUtils";
 import type { Account, Role, LoginResponse, RegisterResponse, TokenRefreshResponse } from "../types";
 
 export const authService = {
@@ -33,16 +34,19 @@ export const authService = {
             const refreshToken = this.generateRefreshToken(userData, rememberMe);
 
 
+
             if (rememberMe) {
 
-                localStorage.setItem('token', token);
-                localStorage.setItem('refreshToken', refreshToken);
-                localStorage.setItem('rememberMe', 'true');
+                setCookie('accessToken', token, 7);
+                setCookie('refreshToken', refreshToken, 30);
+                setCookie('rememberMe', 'true', 30);
+                setCookie('user', JSON.stringify(userData), 7);
             } else {
 
-                sessionStorage.setItem('token', token);
-                sessionStorage.setItem('refreshToken', refreshToken);
-                localStorage.removeItem('rememberMe');
+                setCookie('accessToken', token);
+                setCookie('refreshToken', refreshToken);
+                setCookie('user', JSON.stringify(userData));
+                eraseCookie('rememberMe');
             }
 
             return {
@@ -119,10 +123,8 @@ export const authService = {
 
     async refreshToken(): Promise<TokenRefreshResponse> {
         try {
-            const isRemembered = localStorage.getItem('rememberMe') === 'true';
-            const refreshToken = isRemembered
-                ? localStorage.getItem('refreshToken')
-                : sessionStorage.getItem('refreshToken');
+            const isRemembered = getCookie('rememberMe') === 'true';
+            const refreshToken = getCookie('refreshToken');
 
             if (!refreshToken) {
                 return {
@@ -141,10 +143,11 @@ export const authService = {
 
             const newToken = this.generateToken(userData, isRemembered);
 
+
             if (isRemembered) {
-                localStorage.setItem('token', newToken);
+                setCookie('accessToken', newToken, 7);
             } else {
-                sessionStorage.setItem('token', newToken);
+                setCookie('accessToken', newToken);
             }
 
             return {
@@ -160,6 +163,62 @@ export const authService = {
         }
     },
 
+    async checkUsernameExists(username: string): Promise<{ exists: boolean }> {
+        try {
+            const accountResponse = await api.get('/account');
+            const accounts: Account[] = accountResponse.data;
+
+            const existingAccount = accounts.find(
+                (acc: Account) => acc.username === username
+            );
+
+            return {
+                exists: !!existingAccount
+            };
+        } catch (error) {
+            console.error("Check username error:", error);
+            return {
+                exists: false
+            };
+        }
+    },
+
+    async resetPassword(username: string, newPassword: string): Promise<{ success: boolean; message?: string }> {
+        try {
+            const accountResponse = await api.get('/account');
+            const accounts: Account[] = accountResponse.data;
+
+            const account = accounts.find(
+                (acc: Account) => acc.username === username
+            );
+
+            if (!account) {
+                return {
+                    success: false,
+                    message: "Account does not exist"
+                };
+            }
+
+
+            const updatedAccount = {
+                ...account,
+                password: newPassword
+            };
+
+            await api.put(`/account/${account.id}`, updatedAccount);
+
+            return {
+                success: true,
+                message: "Password changed successfully"
+            };
+        } catch (error) {
+            console.error("Reset password error:", error);
+            return {
+                success: false,
+                message: "An error occurred while changing password"
+            };
+        }
+    },
 
     generateToken(userData: any, rememberMe: boolean = false): string {
         const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
@@ -210,16 +269,18 @@ export const authService = {
     },
 
     logout(): void {
-        localStorage.removeItem('token');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('user');
-        localStorage.removeItem('rememberMe');
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('refreshToken');
-        sessionStorage.removeItem('user');
+        eraseCookie('accessToken');
+        eraseCookie('refreshToken');
+        eraseCookie('user');
+        eraseCookie('rememberMe');
     },
 
     getToken(): string | null {
-        return localStorage.getItem('token') || sessionStorage.getItem('token');
+        return getCookie('accessToken');
+    },
+
+    getUser(): any {
+        const userCookie = getCookie('user');
+        return userCookie ? JSON.parse(userCookie) : null;
     }
 };
