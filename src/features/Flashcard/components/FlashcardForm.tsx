@@ -39,17 +39,17 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
     setFlashcards((prev) => [...prev, { id: "", question: "", answer: "" }]);
   };
 
-  const handleDelte = () =>{
+  const handleDelete = (index: number) =>{
     if (flashcards.length <= minimumFlashcards) {
       alert('You must have at least two flashcards.');
     }else{
-    return deleteCard;
+      setFlashcards(prev => prev.filter((_, i) => i !== index));
     }
   }
 
-  const deleteCard = (index: number) => {
-    setFlashcards(prev => prev.filter((_, i) => i !== index));
-  };
+  // const deleteCard = (index: number) => {
+    
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); 
@@ -91,7 +91,7 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({FlashcardSet, onSubmit}) =
        </label>
       {
         flashcards.map((flashcard: FlashcardItem,index) => (
-          <Flashcard key={index} flashcard={flashcard} onDelete={handleDelte} onChange={(field, value) => updateCard(index, field, value)} />
+          <Flashcard key={index} flashcard={flashcard} onDelete={() => handleDelete(index)} onChange={(field, value) => updateCard(index, field, value)} />
         ))
       }
       <button type='button' onClick={addMoreCard} >Add more card</button>
