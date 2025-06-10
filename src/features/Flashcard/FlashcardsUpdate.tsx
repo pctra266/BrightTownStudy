@@ -15,10 +15,10 @@ const FlashcardsUpdate = () => {
   const handleSubmitEidt = async (data: FlashcardSet) => {
     if (id) {
       await updateFlashcardSet(id, data);
-      navigate("/flashcard");
+      navigate("/library");
     } else {
       alert("Không tìm thấy ID của bộ flashcard để cập nhật.");
-      navigate("/flashcard");
+      navigate("/library");
     }
   };
 

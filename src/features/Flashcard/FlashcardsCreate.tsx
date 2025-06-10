@@ -11,7 +11,7 @@ const FlashCardsCreate = () => {
 
   const handleSubmitCreate = async (data: Omit<FlashcardSet, 'id'>) => {
       await createFlashcardSet(data);
-      navigate('/flashcard'); 
+      navigate('/library'); 
   }
 
   return (
