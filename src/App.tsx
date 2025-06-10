@@ -11,7 +11,9 @@ import FlashcardsUpdate from "./features/Flashcard/FlashcardsUpdate";
 import NotFound from "./pages/NotFound";
 import FlashcardsPlay from "./features/Flashcard/FlashcardsPlay";
 import InspirationHall from "./pages/InspirationHall";
-import DiscussionHub from "./pages/DiscussionHub";
+import DiscussionHub from "./features/Discussion/components/DiscussionHub";
+import DiscussionDetail from "./features/Discussion/components/DiscussionDetail";
+import CreateDiscussion from "./features/Discussion/components/CreateDiscussion";
 import Login from "./features/Auth/components/Login";
 import SignUp from "./features/Auth/components/SignUp";
 import User from "./features/Auth/components/User";
@@ -52,10 +54,19 @@ const App = () => {
             <Route path="/flashcard/:id/play" element={<FlashcardsPlay />} />
             <Route path="/inspo" element={<InspirationHall />} />
             <Route path="/talk" element={<DiscussionHub />} />
+            <Route path="/talk/:id" element={<DiscussionDetail />} />
+            <Route
+              path="/talk/new"
+              element={
+                <ProtectedRoute requiredRole="2">
+                  <CreateDiscussion />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/user"
               element={
-                <ProtectedRoute requiredRole="user">
+                <ProtectedRoute requiredRole="2">
                   <User />
                 </ProtectedRoute>
               }
@@ -63,7 +74,7 @@ const App = () => {
             <Route
               path="/admin"
               element={
-                <ProtectedRoute requiredRole="admin">
+                <ProtectedRoute requiredRole="1">
                   <Admin />
                 </ProtectedRoute>
               }

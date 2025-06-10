@@ -98,6 +98,28 @@ const Navbar = React.memo(() => {
   const styles = useNavbarStyles(theme);
   const { user, logout, isAuthenticated } = useAuth();
 
+  const filteredPages = React.useMemo(() => {
+    if (user?.role === "1") {
+      return PAGES.filter((page) => page.path !== "/talk");
+    }
+    return PAGES;
+  }, [user?.role]);
+
+  const filteredNavigationTabs = React.useMemo(() => {
+    return filteredPages.slice(1);
+  }, [filteredPages]);
+
+  const getDisplayRole = React.useCallback((role: string) => {
+    switch (role) {
+      case "1":
+        return "ADMIN";
+      case "2":
+        return "USER";
+      default:
+        return role;
+    }
+  }, []);
+
   const [anchorElNav, setAnchorElNav] = React.useState<HTMLElement | null>(
     null
   );
@@ -121,7 +143,7 @@ const Navbar = React.memo(() => {
   }, [logout]);
 
   const tabValue = React.useMemo(() => {
-    const tabIndex = NAVIGATION_TABS.findIndex((page) => {
+    const tabIndex = filteredNavigationTabs.findIndex((page) => {
       if (page.path === "/") {
         return location.pathname === "/";
       }
@@ -131,11 +153,11 @@ const Navbar = React.memo(() => {
       );
     });
     return tabIndex >= 0 ? tabIndex : false;
-  }, [location.pathname]);
+  }, [location.pathname, filteredNavigationTabs]);
 
   const menuItems = React.useMemo(
     () =>
-      PAGES.map(({ name, path }) => (
+      filteredPages.map(({ name, path }) => (
         <MenuItem key={path} onClick={handleCloseNavMenu} disableGutters>
           <Link
             to={path}
@@ -151,15 +173,15 @@ const Navbar = React.memo(() => {
           </Link>
         </MenuItem>
       )),
-    [handleCloseNavMenu]
+    [handleCloseNavMenu, filteredPages]
   );
 
   const navigationTabs = React.useMemo(
     () =>
-      NAVIGATION_TABS.map(({ name, path }) => (
+      filteredNavigationTabs.map(({ name, path }) => (
         <LinkTab key={path} label={name} to={path} />
       )),
-    []
+    [filteredNavigationTabs]
   );
 
   return (
@@ -272,7 +294,7 @@ const Navbar = React.memo(() => {
                   sx={styles.signUpButtonStyles}
                   disabled
                 >
-                  {user?.username}-{user?.role}
+                  {user?.username}-{getDisplayRole(user?.role || "")}
                 </Button>
                 <Button variant="contained" onClick={handleLogout}>
                   Log Out

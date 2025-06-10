@@ -19,30 +19,21 @@ export const authService = {
                 };
             }
 
-            const roleResponse = await api.get('/role');
-            const roles: Role[] = roleResponse.data;
-            const userRole = roles.find((role: Role) => role.id === account.role);
-
-
             const userData = {
                 id: account.id,
                 username: account.username,
-                role: userRole?.role || "user"
+                role: account.role // Use the role ID directly ("1" for admin, "2" for user)
             };
 
             const token = this.generateToken(userData, rememberMe);
             const refreshToken = this.generateRefreshToken(userData, rememberMe);
 
-
-
             if (rememberMe) {
-
                 setCookie('accessToken', token, 7);
                 setCookie('refreshToken', refreshToken, 30);
                 setCookie('rememberMe', 'true', 30);
                 setCookie('user', JSON.stringify(userData), 7);
             } else {
-
                 setCookie('accessToken', token);
                 setCookie('refreshToken', refreshToken);
                 setCookie('user', JSON.stringify(userData));
@@ -100,7 +91,7 @@ export const authService = {
             const userData = {
                 id: newId,
                 username: username,
-                role: "user"
+                role: "2" // Use role ID directly
             };
 
             const token = this.generateToken(userData);
@@ -224,7 +215,7 @@ export const authService = {
         const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
         const expiration = rememberMe
             ? Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60)
-            : Math.floor(Date.now() / 1000) + (60 * 1);
+            : Math.floor(Date.now() / 1000) + (24 * 60 * 60); // Changed from 1 hour to 24 hours
 
         const payload = btoa(JSON.stringify({
             ...userData,
