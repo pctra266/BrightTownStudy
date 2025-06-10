@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { ArrowBack, Send } from "@mui/icons-material";
 import { useAuth } from "../../../context/AuthContext";
-import { discussionService } from "../../../services/discussionService";
+import { discussionService } from "../services/discussionService";
 
 const CreateDiscussion = () => {
   const navigate = useNavigate();
