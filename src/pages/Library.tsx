@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import LibraryBackGround from "../assets/images/Library.png";
+import LibraryBackGround from "../assets/images/newLibrary.jpg";
 import Fog from "../assets/images/Fog.png";
 import Spakle from "../assets/images/Sparkle.png";
 import Owl from "../assets/images/Owl.png";
@@ -13,7 +13,8 @@ const Library = () => {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center px-6 py-12"
+      className=" min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center px-6 py-12
+      "
       style={{ backgroundImage: `url(${LibraryBackGround})` }}
     >
       {/* Fog Layer - minimal version */}
@@ -21,58 +22,53 @@ const Library = () => {
         {/* Fog phía trên */}
         <img
           src={Fog}
-          className="absolute  left-[20%] w-[400px] opacity-15 blur-sm mix-blend-lighten animate-fog1"
+          className="absolute  left-[20%]  w-[400px]  animate-fog1"
         />
         <img
           src={Fog}
-          className="absolute  left-[70%] w-[350px] opacity-10 blur-sm mix-blend-lighten animate-fog2"
+          className="absolute  left-[70%] w-[350px] animate-fog2"
         />
 
         {/* Fog phía dưới */}
         <img
           src={Fog}
-          className="absolute  left-[10%] w-[450px] opacity-20 blur-sm mix-blend-lighten animate-fog3"
+          className="absolute  left-[10%]  w-[450px] animate-fog3"
         />
         <img
           src={Fog}
-          className="absolute  left-[50%] w-[400px] opacity-15 blur-sm mix-blend-lighten animate-fog4"
+          className="absolute  left-[-5%] opacity-30  w-[400px] animate-fog4"
         />
         <img
           src={Fog}
-          className="absolute  left-[75%] w-[350px] opacity-12 mix-blend-lighten animate-fog5"
+          className="absolute  left-[75%] w-[350px] animate-fog5"
         />
         {/* Fog lớn làm điểm nhấn ở đáy */}
         <img
           src={Fog}
-          className="fixed top-[55%]  left-[75%] -translate-x-1/2 w-[1000px] mix-blend-lighten animate-fogHero"
+          className="fixed top-[55%] left-[-15%] w-[1000px] opacity-80 animate-fogHero"
         />
       </div>
       {/* Sparkle Layer */}
       <img
         src={Spakle} // bạn đổi lại path nếu ảnh khác
         alt="Sparkle Layer"
-        className="absolute inset-0 w-full h-full object-cover  mix-blend-screen animate-twinkle pointer-events-none z-10"
+        className="absolute inset-0 w-full h-full object-cover animate-twinkle pointer-events-none z-10"
       />
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-20 overflow-hidden ">
-        {/* <img
-        src={FloatingBook}
-        className="absolute rotate-[25deg]  bottom-[-5%] left-[0%] w-[250px]   animate-bookFloat3"
-        alt="Floating Book"
-      /> */}
         <img
           src={Owl}
           className="absolute rotate-[25deg]  bottom-[50%] right-[0%] w-[20%] mix-blend-screen  animate-bookFloat3"
           alt="Floating Book"
         />
       </div>
-      <div className="relative w-[60%] right-[0%] mix-blend-screen animate-bookFloat1">
+      <div className="relative w-[60%] right-[0%]  animate-bookFloat1">
         <img src={Scroll} className="w-full" alt="Scroll Background" />
 
         {/* Content container */}
-        <div className="absolute top-[15%] left-[10%] w-[78%] h-[70%] flex-col flex items-center justify-center gap-8">
+        <div className="absolute top-[15%] left-[10%] w-[78%] h-[70%] flex-col flex justify-center items-center gap-8 ">
           <div
             onClick={() => navigate("/flashcard")}
-            className="grayscale cursor-pointer glow-on-hover flex items-center justify-center"
+            className="grayscale cursor-pointer glow-on-hover flex items-center justify-center "
           >
             <img src={Flashcard} className="w-[120px]" alt="Flashcard Icon" />
             <p>

@@ -19,9 +19,9 @@
   .animate-fog5 { animation: fogFloatX 60s ease-in-out infinite; }
   
   @keyframes fogHeroMotion {
-    0% { transform: translateX(0) scale(1); opacity: 0.25; }
-    50% { transform: translateX(40px) scale(1.02); opacity: 0.3; }
-    100% { transform: translateX(0) scale(1); opacity: 0.25; }
+    0% { transform: translateX(0) scale(1) }
+    50% { transform: translateX(40px) scale(1.02) }
+    100% { transform: translateX(0) scale(1) }
   }
   
   .animate-fogHero {
@@ -30,7 +30,7 @@
 
   @keyframes twinkle {
     0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.2; }
+    50% { opacity: 0.5; }
   }
   
   .animate-twinkle {
