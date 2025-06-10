@@ -41,7 +41,7 @@ import {
   discussionService,
   type Discussion,
   type Answer,
-} from "../../../services/discussionService";
+} from "../services/discussionService";
 import VoteButtons from "./VoteButtons";
 
 const DiscussionDetail = () => {
