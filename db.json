@@ -185,5 +185,224 @@
       "id": "2",
       "role": "user"
     }
+  ],
+  "discussions": [
+    {
+      "id": "1",
+      "title": "How to effectively use flashcards for studying anything else?",
+      "content": "I'm struggling with memorizing vocabulary using flashcards. What are some effective techniques you recommend yet?",
+      "authorId": "2",
+      "authorName": "truong",
+      "createdAt": "2024-01-15T10:30:00Z",
+      "updatedAt": "2025-06-10T06:49:16.533Z",
+      "isEdited": true,
+      "upvotes": 1,
+      "downvotes": 1,
+      "score": 0,
+      "userVotes": {
+        "3": "upvote",
+        "4": "downvote"
+      },
+      "views": 2,
+      "viewedBy": [
+        "4",
+        "1"
+      ],
+      "answers": [
+        {
+          "id": "1",
+          "content": "I recommend using spaced repetition. Review cards at increasing intervals - 1 day, 3 days, 1 week, etc.",
+          "authorId": "3",
+          "authorName": "tqt",
+          "createdAt": "2024-01-15T14:20:00Z",
+          "updatedAt": null,
+          "isEdited": false,
+          "upvotes": 1,
+          "downvotes": 0,
+          "score": 1,
+          "userVotes": {
+            "2": "upvote"
+          }
+        },
+        {
+          "id": "2",
+          "content": "Try the Leitner system! Organize cards into different boxes based on how well you know them.\nGood luck",
+          "authorId": "4",
+          "authorName": "pctra266",
+          "createdAt": "2024-01-15T16:45:00Z",
+          "updatedAt": "2025-06-10T07:44:12.113Z",
+          "isEdited": true,
+          "upvotes": 1,
+          "downvotes": 1,
+          "score": 0,
+          "userVotes": {
+            "2": "downvote",
+            "3": "upvote"
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Best time of day to study?",
+      "content": "When do you find yourself most productive when studying? Morning, afternoon, or evening?",
+      "authorId": "3",
+      "authorName": "tqt",
+      "createdAt": "2024-01-14T08:15:00Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 0,
+      "score": 0,
+      "userVotes": {},
+      "views": 2,
+      "viewedBy": [
+        "1",
+        "2"
+      ],
+      "answers": [
+        {
+          "id": "3",
+          "content": "I'm definitely a morning person. My brain is freshest right after I wake up.",
+          "authorId": "2",
+          "authorName": "truong",
+          "createdAt": "2024-01-14T09:30:00Z",
+          "updatedAt": null,
+          "isEdited": false,
+          "upvotes": 0,
+          "downvotes": 0,
+          "score": 0,
+          "userVotes": {}
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "How to stay motivated while studying?",
+      "content": "I often lose motivation after a few weeks of studying. Any tips on maintaining long-term motivation?",
+      "authorId": "4",
+      "authorName": "pctra266",
+      "createdAt": "2024-01-13T19:22:00Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 0,
+      "score": 0,
+      "userVotes": {},
+      "views": 1,
+      "viewedBy": [
+        "1"
+      ],
+      "answers": [
+        {
+          "id": "4",
+          "content": "Set small, achievable goals and celebrate when you reach them. Also, find a study buddy for accountability!",
+          "authorId": "2",
+          "authorName": "truong",
+          "createdAt": "2024-01-13T20:15:00Z",
+          "updatedAt": null,
+          "isEdited": false,
+          "upvotes": 0,
+          "downvotes": 0,
+          "score": 0,
+          "userVotes": {}
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Effective note-taking strategies?",
+      "content": "What note-taking methods do you use? I'm looking for something more effective than just writing everything down.",
+      "authorId": "2",
+      "authorName": "truong",
+      "createdAt": "2024-01-12T13:45:00Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 0,
+      "score": 0,
+      "userVotes": {},
+      "views": 1,
+      "viewedBy": [
+        "1"
+      ],
+      "answers": []
+    },
+    {
+      "id": "5",
+      "title": "How to prepare for exams efficiently?",
+      "content": "With limited time before exams, what's the most efficient way to review all the material?",
+      "authorId": "3",
+      "authorName": "tqt",
+      "createdAt": "2024-01-11T16:20:00Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 0,
+      "score": 0,
+      "userVotes": {},
+      "views": 1,
+      "viewedBy": [
+        "1"
+      ],
+      "answers": [
+        {
+          "id": "6",
+          "content": "Focus on active recall rather than just re-reading. Test yourself frequently!",
+          "authorId": "4",
+          "authorName": "pctra266",
+          "createdAt": "2024-01-11T18:45:00Z",
+          "updatedAt": null,
+          "isEdited": false,
+          "upvotes": 0,
+          "downvotes": 0,
+          "score": 0,
+          "userVotes": {}
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Lalala",
+      "content": "Lalala",
+      "authorId": "4",
+      "authorName": "pctra266",
+      "createdAt": "2025-06-10T07:41:52.222Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 1,
+      "downvotes": 0,
+      "score": 1,
+      "userVotes": {
+        "2": "upvote"
+      },
+      "views": 2,
+      "viewedBy": [
+        "2",
+        "1"
+      ],
+      "answers": []
+    },
+    {
+      "id": "7",
+      "title": "Kakaka",
+      "content": "Kakaka",
+      "authorId": "2",
+      "authorName": "truong",
+      "createdAt": "2025-06-10T07:58:28.223Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 1,
+      "score": -1,
+      "userVotes": {
+        "4": "downvote"
+      },
+      "views": 1,
+      "viewedBy": [
+        "4"
+      ],
+      "answers": []
+    }
   ]
 }
