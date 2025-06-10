@@ -5,7 +5,6 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import "./features/Auth/services/interceptor";
 import Home from "./pages/Home";
 import Library from "./pages/Library";
-import Flashcards from "./features/Flashcard/Flashcards";
 import FlashcardsCreate from "./features/Flashcard/FlashcardsCreate";
 import FlashcardsUpdate from "./features/Flashcard/FlashcardsUpdate";
 import NotFound from "./pages/NotFound";
@@ -48,10 +47,9 @@ const App = () => {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/library" element={<Library />} />
-            <Route path="/flashcard" element={<Flashcards />} />
-            <Route path="/flashcard/new" element={<FlashcardsCreate />} />
-            <Route path="/flashcard/edit/:id" element={<FlashcardsUpdate />} />
-            <Route path="/flashcard/:id/play" element={<FlashcardsPlay />} />
+            <Route path="/library/flashcard/new" element={<FlashcardsCreate />} />
+            <Route path="/library/flashcard/edit/:id" element={<FlashcardsUpdate />} />
+            <Route path="/library/flashcard/:id/play" element={<FlashcardsPlay />} />
             <Route path="/inspo" element={<InspirationHall />} />
             <Route path="/talk" element={<DiscussionHub />} />
             <Route path="/talk/:id" element={<DiscussionDetail />} />

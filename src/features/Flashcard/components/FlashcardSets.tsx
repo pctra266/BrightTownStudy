@@ -21,7 +21,7 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"name" | "date" | "cards">("name");
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
-  const itemsPerPage = 9;
+  const itemsPerPage = 6;
 
   // Filter and sort flashcard sets
   const filteredSets = flashcardSets

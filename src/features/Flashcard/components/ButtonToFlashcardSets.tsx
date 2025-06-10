@@ -5,7 +5,7 @@ const ButtonToFlashcardSets = () => {
 
   return (
     <button 
-      onClick={() => navigate('/flashcard')} 
+      onClick={() => navigate('/library')} 
       className="fixed top-20 left-6 z-50 flex items-center gap-2 px-4 py-3 bg-[#1976D2] hover:bg-[#1565C0] text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium group"
     >
       {/* Back Arrow Icon */}
