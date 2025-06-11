@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Flashcard from "./FlashcardItem";
 import type { FlashcardItem, FlashcardSet } from "../types";
+import { useAuth } from "../../../context/AuthContext";
 
 interface FlashcardFormProps {
   FlashcardSet?: FlashcardSet;
@@ -11,6 +11,10 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
   FlashcardSet,
   onSubmit,
 }) => {
+  const { user } = useAuth();
+  const userId = user?.id || "";
+  const minimumFlashcards = 2;
+  
   const [name, setName] = useState(FlashcardSet?.name || "");
   const [description, setDescription] = useState(
     FlashcardSet?.description || ""
@@ -22,7 +26,7 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
     ]
   );
 
-  const minimumFlashcards = 2;
+  
 
   useEffect(() => {
     if (FlashcardSet) {
@@ -64,6 +68,7 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
           question: f.question.trim(),
           answer: f.answer.trim(),
         })),
+      userId: userId
     };
 
     if (FlashcardSet?.id) {

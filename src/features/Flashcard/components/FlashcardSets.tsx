@@ -15,7 +15,7 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
   onEdit,
   onDelete,
   onCreate,
-  onPlay,
+  onPlay
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -315,7 +315,7 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex justify-center items-center mt-12">
+            <div className="flex justify-center items-center mt-2">
               <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
                 {/* Previous button */}
                 <button

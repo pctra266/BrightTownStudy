@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import LibraryBackGround from "../assets/images/newLibrary.jpg";
 import Fog from "../assets/images/Fog.png";
 import Spakle from "../assets/images/Sparkle.png";
@@ -6,9 +5,7 @@ import Owl from "../assets/images/Owl.png";
 import Scroll from "../assets/images/Scroll.png";
 import "./Library.css";
 import Flashcards from "../features/Flashcard/Flashcards";
-
 const Library = () => {
-  const navigate = useNavigate();
 
   return (
     <div
@@ -56,7 +53,7 @@ const Library = () => {
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-20 overflow-hidden ">
         <img
           src={Owl}
-          className="absolute rotate-[25deg]  bottom-[50%] right-[0%] w-[20%] mix-blend-screen  animate-bookFloat3"
+          className="absolute rotate-[25deg]  top-[10%] right-[0%] w-[15%] mix-blend-screen  animate-bookFloat3"
           alt="Floating Book"
         />
       </div>
@@ -65,7 +62,7 @@ const Library = () => {
 
         {/* Content container */}
         <div className="absolute top-[16%] left-[11%] w-[78%] h-[70%] flex-col flex justify-center items-center gap-8 ">
-         <Flashcards/>
+         <Flashcards />
         </div>
       </div>
     </div>

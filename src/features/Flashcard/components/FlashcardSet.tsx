@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import type { FlashcardSetMeta } from "../types";
+import { useAuth } from "../../../context/AuthContext";
 
 interface FlashcardSetProps {
   FlashcardSetMeta: FlashcardSetMeta;
@@ -13,7 +14,11 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({
   onEdit,
   onDelete,
   onPlay,
+  
 }) => {
+  const { user } = useAuth();
+  const userId = user?.id || "";
+
   const handleEdit = () => {
     onEdit(FlashcardSet.id);
   };
@@ -25,6 +30,10 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({
   const handlePlay = () => {
     onPlay(FlashcardSet.id);
   };
+
+  const isUserOwner = () =>{
+    return FlashcardSet.userId == userId;
+  }
 
   return (
     <div className="flex items-center justify-between bg-white/90 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 h-20">
@@ -60,6 +69,7 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({
           {/* Right section - Action buttons */}
           <div className="flex items-center gap-3 ml-6">
             {/* Edit button */}
+            {isUserOwner() && (
             <button
               onClick={handleEdit}
               className="p-2 text-gray-500 hover:text-[#1976D2] hover:bg-blue-50 rounded-lg transition-all duration-200 group"
@@ -79,9 +89,11 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({
                 />
               </svg>
             </button>
+            )}
 
             {/* Delete button */}
-            <button
+            {isUserOwner()&& (
+              <button
               onClick={handleDelete}
               className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 group"
               title="Delete flashcard set"
@@ -100,6 +112,8 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({
                 />
               </svg>
             </button>
+            )}
+            
           </div>
         </div>
       </div>
