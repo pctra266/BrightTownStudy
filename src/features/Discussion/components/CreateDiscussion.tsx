@@ -29,8 +29,14 @@ const CreateDiscussion = () => {
       return;
     }
 
-    if (!user || user.role !== "2") {
-      setError("Only users can ask questions.");
+    if (!user) {
+      setError("You must be logged in to ask questions.");
+      return;
+    }
+
+    // Allow both users (role "2") and admins (role "1") to create discussions
+    if (user.role !== "2" && user.role !== "1") {
+      setError("You don't have permission to ask questions.");
       return;
     }
 

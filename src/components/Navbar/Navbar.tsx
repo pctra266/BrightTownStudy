@@ -99,11 +99,9 @@ const Navbar = React.memo(() => {
   const { user, logout, isAuthenticated } = useAuth();
 
   const filteredPages = React.useMemo(() => {
-    if (user?.role === "1") {
-      return PAGES.filter((page) => page.path !== "/talk");
-    }
+    // Admin can access all pages including Discussion Hub
     return PAGES;
-  }, [user?.role]);
+  }, []);
 
   const filteredNavigationTabs = React.useMemo(() => {
     return filteredPages.slice(1);

@@ -56,7 +56,7 @@ const App = () => {
             <Route
               path="/talk/new"
               element={
-                <ProtectedRoute requiredRole="2">
+                <ProtectedRoute>
                   <CreateDiscussion />
                 </ProtectedRoute>
               }
