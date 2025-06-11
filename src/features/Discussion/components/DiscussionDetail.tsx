@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   Container,
@@ -279,13 +279,20 @@ const DiscussionDetail = () => {
     });
   };
 
-  const canEditDelete = (authorId: string) => {
-    return isAuthenticated && user?.id === authorId;
-  };
+  const canEditDelete = useCallback(
+    (authorId: string) => {
+      return isAuthenticated && user?.id === authorId;
+    },
+    [isAuthenticated, user?.id]
+  );
 
-  const canVote = (authorId: string) => {
-    return isAuthenticated && user?.id !== authorId && user?.role === "2";
-  };
+  const canVote = useCallback(
+    (authorId: string) => {
+      // Allow both users and admins to vote, but not on their own posts
+      return isAuthenticated && user?.id !== authorId;
+    },
+    [isAuthenticated, user?.id]
+  );
 
   const openAnswerMenu = (
     answerId: string,
@@ -691,7 +698,7 @@ const DiscussionDetail = () => {
       <Divider sx={{ my: 4 }} />
 
       {/* Answer form */}
-      {isAuthenticated && user?.role === "2" ? (
+      {isAuthenticated ? (
         <Card>
           <CardContent>
             <Typography variant="h6" sx={{ mb: 2 }}>
@@ -718,17 +725,9 @@ const DiscussionDetail = () => {
             </Button>
           </CardContent>
         </Card>
-      ) : !isAuthenticated ? (
+      ) : (
         <Alert severity="warning">
           You need to log in to answer questions.
-        </Alert>
-      ) : user?.role === "1" ? (
-        <Alert severity="info">
-          Admin cannot answer questions in Discussion Hub.
-        </Alert>
-      ) : (
-        <Alert severity="error">
-          Access permission error. Please log in again.
         </Alert>
       )}
 

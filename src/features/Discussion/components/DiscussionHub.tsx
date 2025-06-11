@@ -175,7 +175,7 @@ const DiscussionHub = () => {
           <Typography variant="h4" component="h1" fontWeight="bold">
             Discussion Hub
           </Typography>
-          {isAuthenticated && user?.role === "2" && (
+          {isAuthenticated && (
             <Button
               variant="contained"
               startIcon={<AddIcon />}
@@ -195,14 +195,6 @@ const DiscussionHub = () => {
           <Box sx={{ p: 2, bgcolor: "info.light", borderRadius: 1, mb: 3 }}>
             <Typography variant="body2" color="info.contrastText">
               You need to log in to ask questions and answer questions.
-            </Typography>
-          </Box>
-        )}
-
-        {isAuthenticated && user?.role === "1" && (
-          <Box sx={{ p: 2, bgcolor: "warning.light", borderRadius: 1, mb: 3 }}>
-            <Typography variant="body2" color="warning.contrastText">
-              Admin can only view questions and answers, cannot interact.
             </Typography>
           </Box>
         )}

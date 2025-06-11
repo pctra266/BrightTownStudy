@@ -55,15 +55,8 @@ const Login = () => {
       );
 
       if (success) {
-        setTimeout(() => {
-          const userInfo = authService.getUser();
-
-          if (userInfo && userInfo.role === "admin") {
-            navigate("/admin", { replace: true });
-          } else {
-            navigate("/user", { replace: true });
-          }
-        }, 100);
+        // Always redirect to home page regardless of role (user or admin)
+        navigate("/", { replace: true });
       } else {
         setError("Invalid username or password");
       }

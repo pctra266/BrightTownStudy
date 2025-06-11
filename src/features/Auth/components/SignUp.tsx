@@ -61,10 +61,7 @@ const SignUp = () => {
 
       if (result.success) {
         setSuccess(result.message);
-
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
+        navigate("/login", { replace: true });
       } else {
         setError(result.message);
       }
