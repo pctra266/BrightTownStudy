@@ -1,0 +1,455 @@
+{
+  "flashcardSets": [
+    {
+      "id": "3",
+      "name": "History Facts",
+      "description": "A collection of flashcards about important historical events.",
+      "userId": "5",
+      "flashcards": [
+        {
+          "id": "1",
+          "question": "Who was the first President of the United States?",
+          "answer": "George Washington",
+          "image": {
+            "id": "UczwJ",
+            "url": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHw4fHxnYW1lfGVufDB8fHx8MTc0OTcxMTYxOXww&ixlib=rb-4.1.0&q=80&w=400",
+            "alt": "red xbox one game controller"
+          }
+        },
+        {
+          "id": "2",
+          "question": "What year did World War II end?",
+          "answer": "1945",
+          "image": null
+        },
+        {
+          "id": "3",
+          "question": "Who discovered America in 1492?",
+          "answer": "Christopher Columbus",
+          "image": {
+            "id": "adsf",
+            "url": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHw4fHxnYW1lfGVufDB8fHx8MTc0OTcxMTYxOXww&ixlib=rb-4.1.0&q=80&w=400",
+            "alt": "red xbox one game controller"
+          }
+        },
+        {
+          "id": "4",
+          "question": "What was the name of the ship that sank in 1912?",
+          "answer": "Titanic",
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "d3d",
+      "name": "new Set",
+      "description": "setNew",
+      "userId": "5",
+      "flashcards": [
+        {
+          "id": "b22beb81-8a72-4318-b735-841417182342",
+          "question": "1",
+          "answer": "ansưẻ2",
+          "image": null
+        },
+        {
+          "id": "e8825ef2-d576-412e-96d9-f3141dfdf0b2",
+          "question": "2",
+          "answer": "444",
+          "image": {
+            "id": "122872",
+            "url": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHw4fHxnYW1lfGVufDB8fHx8MTc0OTcxMTYxOXww&ixlib=rb-4.1.0&q=80&w=400",
+            "alt": "red xbox one game controller"
+          }
+        },
+        {
+          "id": "630bf680-796e-4d07-85fe-098a1883f241",
+          "question": "3",
+          "answer": "4444",
+          "image": null
+        }
+      ]
+    },
+    {
+      "name": "OnlyCat",
+      "description": "cat cat cat",
+      "flashcards": [
+        {
+          "id": "77c1cae2-fea2-4cea-8df9-a3d55e8f1df9",
+          "question": "cat 1",
+          "answer": "orange",
+          "image": null
+        },
+        {
+          "id": "3fabe72d-5c26-4483-9890-368e25e75910",
+          "question": "cat 2",
+          "answer": "huhuhu",
+          "image": null
+        },
+        {
+          "id": "6dd9237c-25b2-4c46-9938-599d8c6f9edd",
+          "question": "meo3",
+          "answer": "tao moi",
+          "image": null
+        }
+      ],
+      "userId": "5",
+      "id": "0554"
+    },
+    {
+      "id": "0985",
+      "name": "last set",
+      "description": "t",
+      "flashcards": [
+        {
+          "id": "be595790-8cce-4a04-a470-8eaf3f1df9d3",
+          "question": "so gi bang 1",
+          "answer": "1"
+        },
+        {
+          "id": "6ebeb926-3502-4549-84e1-e5b231c38011",
+          "question": "so gi bang 2",
+          "answer": "2"
+        }
+      ],
+      "userId": "5"
+    },
+    {
+      "id": "c2e3",
+      "name": "lam on lam phuoc",
+      "description": "",
+      "flashcards": [
+        {
+          "id": "8fd0fcae-41ba-4299-8e88-8b1878b5b11d",
+          "question": "aaaaa",
+          "answer": "aaaa",
+          "image": null
+        },
+        {
+          "id": "817465df-4aaa-44a3-ade6-48d801ce071f",
+          "question": "bbb",
+          "answer": "b123",
+          "image": null
+        }
+      ],
+      "userId": "5"
+    },
+    {
+      "id": "9a0d",
+      "name": "Toi kho qua",
+      "description": "met moi",
+      "flashcards": [
+        {
+          "id": "0a5dec81-51c7-4118-b88c-171e10444294",
+          "question": "new term",
+          "answer": "new def",
+          "image": {
+            "id": "RmoWqDCqN2E",
+            "url": "https://images.unsplash.com/photo-1537420327992-d6e192287183?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHwxfHxzcGFjZXxlbnwwfHx8fDE3NDk3MTY0NjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+            "alt": "timelapse photography of warped lines"
+          }
+        },
+        {
+          "id": "ac9e1340-f1fd-499f-a59e-978a594c0192",
+          "question": "space 2",
+          "answer": "alanawalker",
+          "image": {
+            "id": "WPapb9IqRKw",
+            "url": "https://images.unsplash.com/photo-1591389703635-e15a07b842d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHw1fHxsYW5kfGVufDB8fHx8MTc0OTcxNjQ4M3ww&ixlib=rb-4.1.0&q=80&w=400",
+            "alt": "aerial view of green grass field"
+          }
+        }
+      ],
+      "userId": "5"
+    },
+    {
+      "name": "new set public toi da sua cai nay",
+      "description": "description",
+      "flashcards": [
+        {
+          "id": "83b85b15-5cae-4495-87eb-a0b3b86f210e",
+          "question": "who is most famous 2",
+          "answer": "so 2",
+          "image": {
+            "id": "rPOmLGwai2w",
+            "url": "https://images.unsplash.com/photo-1507838153414-b4b713384a76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHwyfHxtdXNpY3xlbnwwfHx8fDE3NDk3MTgyMDB8MA&ixlib=rb-4.1.0&q=80&w=400",
+            "alt": "tilt selective photograph of music notes"
+          }
+        },
+        {
+          "id": "0a4a86ee-daf5-405d-81f9-9437e9982600",
+          "question": "which anime",
+          "answer": "dan da dan",
+          "image": {
+            "id": "nKO_1QyFh9o",
+            "url": "https://images.unsplash.com/photo-1571757767119-68b8dbed8c97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHw1fHxhbmltZXxlbnwwfHx8fDE3NDk3MTgyMTl8MA&ixlib=rb-4.1.0&q=80&w=400",
+            "alt": "white and gray robot during daytime"
+          }
+        }
+      ],
+      "userId": "5",
+      "id": "3653"
+    }
+  ],
+  "account": [
+    {
+      "id": "1",
+      "username": "bernie",
+      "password": "123456",
+      "role": "1"
+    },
+    {
+      "id": "2",
+      "username": "truong",
+      "password": "123456",
+      "role": "2"
+    },
+    {
+      "id": "3",
+      "username": "tqt",
+      "password": "123456",
+      "role": "2"
+    },
+    {
+      "id": "4",
+      "username": "pctra266",
+      "password": "pctra266",
+      "role": "2"
+    },
+    {
+      "id": "5",
+      "username": "trapham266",
+      "password": "trapham266",
+      "role": "1"
+    }
+  ],
+  "role": [
+    {
+      "id": "1",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "role": "user"
+    }
+  ],
+  "discussions": [
+    {
+      "id": "1",
+      "title": "How to effectively use flashcards for studying anything else?",
+      "content": "I'm struggling with memorizing vocabulary using flashcards. What are some effective techniques you recommend yet?",
+      "authorId": "2",
+      "authorName": "truong",
+      "createdAt": "2024-01-15T10:30:00Z",
+      "updatedAt": "2025-06-10T06:49:16.533Z",
+      "isEdited": true,
+      "upvotes": 1,
+      "downvotes": 1,
+      "score": 0,
+      "userVotes": {
+        "3": "upvote",
+        "4": "downvote"
+      },
+      "views": 2,
+      "viewedBy": [
+        "4",
+        "1"
+      ],
+      "answers": [
+        {
+          "id": "1",
+          "content": "I recommend using spaced repetition. Review cards at increasing intervals - 1 day, 3 days, 1 week, etc.",
+          "authorId": "3",
+          "authorName": "tqt",
+          "createdAt": "2024-01-15T14:20:00Z",
+          "updatedAt": null,
+          "isEdited": false,
+          "upvotes": 1,
+          "downvotes": 0,
+          "score": 1,
+          "userVotes": {
+            "2": "upvote"
+          }
+        },
+        {
+          "id": "2",
+          "content": "Try the Leitner system! Organize cards into different boxes based on how well you know them.\nGood luck",
+          "authorId": "4",
+          "authorName": "pctra266",
+          "createdAt": "2024-01-15T16:45:00Z",
+          "updatedAt": "2025-06-10T07:44:12.113Z",
+          "isEdited": true,
+          "upvotes": 1,
+          "downvotes": 1,
+          "score": 0,
+          "userVotes": {
+            "2": "downvote",
+            "3": "upvote"
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Best time of day to study?",
+      "content": "When do you find yourself most productive when studying? Morning, afternoon, or evening?",
+      "authorId": "3",
+      "authorName": "tqt",
+      "createdAt": "2024-01-14T08:15:00Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 0,
+      "score": 0,
+      "userVotes": {},
+      "views": 2,
+      "viewedBy": [
+        "1",
+        "2"
+      ],
+      "answers": [
+        {
+          "id": "3",
+          "content": "I'm definitely a morning person. My brain is freshest right after I wake up.",
+          "authorId": "2",
+          "authorName": "truong",
+          "createdAt": "2024-01-14T09:30:00Z",
+          "updatedAt": null,
+          "isEdited": false,
+          "upvotes": 0,
+          "downvotes": 0,
+          "score": 0,
+          "userVotes": {}
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "How to stay motivated while studying?",
+      "content": "I often lose motivation after a few weeks of studying. Any tips on maintaining long-term motivation?",
+      "authorId": "4",
+      "authorName": "pctra266",
+      "createdAt": "2024-01-13T19:22:00Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 0,
+      "score": 0,
+      "userVotes": {},
+      "views": 1,
+      "viewedBy": [
+        "1"
+      ],
+      "answers": [
+        {
+          "id": "4",
+          "content": "Set small, achievable goals and celebrate when you reach them. Also, find a study buddy for accountability!",
+          "authorId": "2",
+          "authorName": "truong",
+          "createdAt": "2024-01-13T20:15:00Z",
+          "updatedAt": null,
+          "isEdited": false,
+          "upvotes": 0,
+          "downvotes": 0,
+          "score": 0,
+          "userVotes": {}
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Effective note-taking strategies?",
+      "content": "What note-taking methods do you use? I'm looking for something more effective than just writing everything down.",
+      "authorId": "2",
+      "authorName": "truong",
+      "createdAt": "2024-01-12T13:45:00Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 0,
+      "score": 0,
+      "userVotes": {},
+      "views": 1,
+      "viewedBy": [
+        "1"
+      ],
+      "answers": []
+    },
+    {
+      "id": "5",
+      "title": "How to prepare for exams efficiently?",
+      "content": "With limited time before exams, what's the most efficient way to review all the material?",
+      "authorId": "3",
+      "authorName": "tqt",
+      "createdAt": "2024-01-11T16:20:00Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 0,
+      "score": 0,
+      "userVotes": {},
+      "views": 1,
+      "viewedBy": [
+        "1"
+      ],
+      "answers": [
+        {
+          "id": "6",
+          "content": "Focus on active recall rather than just re-reading. Test yourself frequently!",
+          "authorId": "4",
+          "authorName": "pctra266",
+          "createdAt": "2024-01-11T18:45:00Z",
+          "updatedAt": null,
+          "isEdited": false,
+          "upvotes": 0,
+          "downvotes": 0,
+          "score": 0,
+          "userVotes": {}
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Lalala",
+      "content": "Lalala",
+      "authorId": "4",
+      "authorName": "pctra266",
+      "createdAt": "2025-06-10T07:41:52.222Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 1,
+      "downvotes": 0,
+      "score": 1,
+      "userVotes": {
+        "2": "upvote"
+      },
+      "views": 2,
+      "viewedBy": [
+        "2",
+        "1"
+      ],
+      "answers": []
+    },
+    {
+      "id": "7",
+      "title": "Kakaka",
+      "content": "Kakaka",
+      "authorId": "2",
+      "authorName": "truong",
+      "createdAt": "2025-06-10T07:58:28.223Z",
+      "updatedAt": null,
+      "isEdited": false,
+      "upvotes": 0,
+      "downvotes": 1,
+      "score": -1,
+      "userVotes": {
+        "4": "downvote"
+      },
+      "views": 1,
+      "viewedBy": [
+        "4"
+      ],
+      "answers": []
+    }
+  ]
+}
