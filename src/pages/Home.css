@@ -1,12 +1,11 @@
 
 .glow-on-hover {
     transition: filter 0.3s ease;
-    /* width: 20%; */
   }
   
   .glow-on-hover:hover {
-    filter: drop-shadow(0 0 10px #FFD700); /* vàng */
-    transform: scale(1.05); /* phóng to nhẹ */
+    filter: drop-shadow(0 0 10px #FFD700); 
+    transform: scale(1.05);
     transition: all 0.3s ease-in-out;
   }
   .text-shadow-stroke {

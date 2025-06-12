@@ -3,13 +3,18 @@ import FlashcardViewer from "./components/FlashcardViewer";
 import { useParams } from "react-router-dom";
 import ButtonToFlashcardSets from "./components/ButtonToFlashcardSets";
 import { useFlashcardSet } from "./hooks/useFlashcardSet";
+import { useAuth } from "../../context/AuthContext";
 
 const FlashcardsPlay = () => {
   const { id = "" } = useParams();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
-  const {flashcardSet} = useFlashcardSet(id);
+  const { user } = useAuth();
+  const userId = user?.id || "";
+  const userRoleId = user?.role || "";
+
+  const { flashcardSet } = useFlashcardSet(id, userId, userRoleId);
 
   const handleFlip = () => {
     setIsFlipped((prev) => !prev);
@@ -29,7 +34,11 @@ const FlashcardsPlay = () => {
 
   if (!id) return <div>Invalid flashcard set ID.</div>;
 
-  if (!flashcardSet || !flashcardSet.flashcards || flashcardSet.flashcards.length === 0) {
+  if (
+    !flashcardSet ||
+    !flashcardSet.flashcards ||
+    flashcardSet.flashcards.length === 0
+  ) {
     return <div>No flashcards found in this set.</div>;
   }
   return (
