@@ -1,6 +1,7 @@
 export interface Image {
-  type: 'base64' | 'url';
-  data: string;
+  id: string;
+  url: string;
+  alt: string;
 }
 
 export interface FlashcardItem {
