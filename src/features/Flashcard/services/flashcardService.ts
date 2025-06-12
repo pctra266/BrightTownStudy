@@ -6,6 +6,11 @@ export const getFlashcardSets = async () => {
   return response.data;
 };
 
+export const getFlashcardSetPublicById = async (flashcardSetId: string) => {
+  const response = await api.get<FlashcardSet>(`/flashcardSets/${flashcardSetId}`);
+  return response.data;
+}
+
 export const getFlashcardSetById = async (flashcardSetId: string, userId: string, role: string): Promise<FlashcardSet> => {
   const response = await api.get<FlashcardSet>(`/flashcardSets/${flashcardSetId}`);
   if (role !== '1' && response.data.userId !== userId) {
