@@ -1,24 +1,5 @@
 
-.glow-on-hover {
-    transition: filter 0.3s ease;
-  }
-  
-  .glow-on-hover:hover {
-    filter: drop-shadow(0 0 10px #FFD700); 
-    transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
-  }
-  .text-shadow-stroke {
-    filter:
-    drop-shadow(1px 0 0 rgba(0,0,0,0.4))
-    drop-shadow(-1px 0 0 rgba(0,0,0,0.4))
-    drop-shadow(0 1px 0 rgba(0,0,0,0.4))
-    drop-shadow(0 -1px 0 rgba(0,0,0,0.4));
-  }
-
-
-  /* Đám mây bay ngang từ trái sang phải */
-  @keyframes cloudMove1 {
+@keyframes cloudMove1 {
     0% { transform: translateX(0); opacity: 1; }
     100% { transform: translateX(130vw); opacity: 0.8; }
   }
@@ -84,7 +65,6 @@
 .animate-floating4 { animation: floating4 11s ease-in-out infinite; }
 .animate-floating5 { animation: floating5 14s ease-in-out infinite; }
 
-/* Chim bay kiểu zigzag, nhanh hơn */
 @keyframes birdMove {
   0% {
     transform: translateX(0) translateY(0);

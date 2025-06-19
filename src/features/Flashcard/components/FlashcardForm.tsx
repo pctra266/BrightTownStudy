@@ -44,8 +44,6 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
       );
     }
   }, [FlashcardSet]);
-  
-
 
   const addMoreCard = () => {
     setFlashcards((prev) => [...prev, { id: "", question: "", answer: "" }]);
