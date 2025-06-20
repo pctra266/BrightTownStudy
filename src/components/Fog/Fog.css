@@ -1,0 +1,58 @@
+@keyframes fogFloatX {
+    0% {
+      transform: translateX(0);
+      opacity: 0.12;
+    }
+    50% {
+      transform: translateX(20px);
+      opacity: 0.18;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 0.12;
+    }
+  }
+  
+  @keyframes fogFloatY {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fog1 {
+    animation: fogFloatX 70s ease-in-out infinite;
+  }
+  .animate-fog2 {
+    animation: fogFloatY 80s ease-in-out infinite;
+  }
+  .animate-fog3 {
+    animation: fogFloatX 65s ease-in-out infinite;
+  }
+  .animate-fog4 {
+    animation: fogFloatY 75s ease-in-out infinite;
+  }
+  .animate-fog5 {
+    animation: fogFloatX 60s ease-in-out infinite;
+  }
+  
+  @keyframes fogHeroMotion {
+    0% {
+      transform: translateX(0) scale(1);
+    }
+    50% {
+      transform: translateX(40px) scale(1.02);
+    }
+    100% {
+      transform: translateX(0) scale(1);
+    }
+  }
+  
+  .animate-fogHero {
+    animation: fogHeroMotion 35s ease-in-out infinite;
+  }

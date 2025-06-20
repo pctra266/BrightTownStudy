@@ -1,0 +1,16 @@
+@keyframes owlFloat {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-12px) scale(1.05);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .animate-owlFloat {
+    animation: owlFloat 9s ease-in-out infinite;
+  }
+  
