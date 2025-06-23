@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import type { FlashcardSetMeta } from "../types";
 import FlashcardSet from "./FlashcardSet";
 
@@ -19,11 +19,10 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState<"name" | "date" | "cards">("name");
+  const [sortBy, setSortBy] = useState<"name" | "description" >("name");
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const itemsPerPage = 6;
 
-  // Filter and sort flashcard sets
   const filteredSets = flashcardSets
     .filter(set => 
       set.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -33,24 +32,19 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
       switch (sortBy) {
         case "name":
           return a.name.localeCompare(b.name);
-        case "date":
-          // Since we don't have lastModified, sort by ID as a proxy for creation order
-          return b.id.localeCompare(a.id);
-        // case "cards":
-        //   return (b.flashcards?.length || 0) - (a.flashcards?.length || 0);
+        case "description":
+          return a.description.localeCompare(b.description);
         default:
           return 0;
       }
     });
 
-  // Calculate pagination
   const totalPages = Math.ceil(filteredSets.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredSets.slice(startIndex, endIndex);
 
-  // Reset to first page when search changes
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, sortBy]);
 
@@ -72,7 +66,7 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
 
   const renderPaginationButtons = () => {
     const buttons = [];
-    const showPages = 5; // Show 5 page numbers at most
+    const showPages = 5; 
     
     let startPage = Math.max(1, currentPage - Math.floor(showPages / 2));
     let endPage = Math.min(totalPages, startPage + showPages - 1);
@@ -81,7 +75,6 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
       startPage = Math.max(1, endPage - showPages + 1);
     }
 
-    // First page and ellipsis
     if (startPage > 1) {
       buttons.push(
         <button
@@ -101,7 +94,6 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
       }
     }
 
-    // Page numbers
     for (let i = startPage; i <= endPage; i++) {
       buttons.push(
         <button
@@ -118,7 +110,6 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
       );
     }
 
-    // Last page and ellipsis
     if (endPage < totalPages) {
       if (endPage < totalPages - 1) {
         buttons.push(
@@ -143,7 +134,6 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-8">
-      {/* Header Section */}
       <div className="mb-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
           <div>
@@ -154,7 +144,7 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
               {flashcardSets.length} total sets • {filteredSets.length} showing
             </p>
           </div>
-          
+
           <button
             className="z-10 flex items-center gap-3 px-6 py-3 bg-[#1976D2] hover:bg-[#1565C0] text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium"
             onClick={onCreate}
@@ -176,9 +166,7 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
           </button>
         </div>
 
-        {/* Search and Filter Bar */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          {/* Search Input */}
           <div className="flex-1 relative">
             <svg
               className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -202,18 +190,15 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
             />
           </div>
 
-          {/* Sort Dropdown */}
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as "name" | "date" | "cards")}
+            onChange={(e) => setSortBy(e.target.value as "name" | "description")}
             className="px-4 py-3 bg-white/90 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1976D2] focus:border-transparent transition-all duration-200"
           >
             <option value="name">Sort by Name</option>
-            <option value="date">Sort by Created</option>
-            <option value="cards">Sort by Cards</option>
+            <option value="description">Sort by Description</option>
           </select>
 
-          {/* View Mode Toggle */}
           <div className="flex bg-white/90 backdrop-blur-sm rounded-lg border border-white/30 p-1">
             <button
               onClick={() => setViewMode("list")}
@@ -243,7 +228,6 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
         </div>
       </div>
 
-      {/* Content Section */}
       {filteredSets.length === 0 ? (
         <div className="text-center py-16 px-8">
           <div className="bg-white/90 backdrop-blur-sm rounded-xl p-12 max-w-md mx-auto">
@@ -295,7 +279,6 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
         </div>
       ) : (
         <>
-          {/* Flashcard Sets Grid/List */}
           <div className={`${
             viewMode === "grid" 
               ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" 
@@ -313,11 +296,9 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
             ))}
           </div>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex justify-center items-center mt-2">
               <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
-                {/* Previous button */}
                 <button
                   className="p-2 text-gray-600 hover:text-[#1976D2] hover:bg-white/70 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-gray-600 disabled:hover:bg-transparent"
                   onClick={goToPrevious}
@@ -337,12 +318,10 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
                   </svg>
                 </button>
 
-                {/* Page numbers */}
                 <div className="flex items-center gap-1">
                   {renderPaginationButtons()}
                 </div>
 
-                {/* Next button */}
                 <button
                   className="p-2 text-gray-600 hover:text-[#1976D2] hover:bg-white/70 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-gray-600 disabled:hover:bg-transparent"
                   onClick={goToNext}

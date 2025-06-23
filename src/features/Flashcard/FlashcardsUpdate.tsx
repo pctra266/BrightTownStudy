@@ -11,8 +11,8 @@ const FlashcardsUpdate = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
-    const userId = user?.id || "";
-    const userRoleId = user?.role || "";
+  const userId = user?.id || "";
+  const userRoleId = user?.role || "";
 
   const { flashcardSet } = useFlashcardSet(id || "",userId,userRoleId);
 
@@ -21,7 +21,7 @@ const FlashcardsUpdate = () => {
       await updateFlashcardSet(id, data,userId,userRoleId);
       navigate("/library");
     } else {
-      alert("Không tìm thấy ID của bộ flashcard để cập nhật.");
+      alert("Cannot find setcard to update");
       navigate("/library");
     }
   };
