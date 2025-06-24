@@ -137,10 +137,10 @@ const FlashcardSets: React.FC<FlashcardSetsProps> = ({
       <div className="mb-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">
+            <h1 className="text-3xl font-bold  mb-2">
               My Flashcard Sets
             </h1>
-            <p className="text-white/80">
+            <p className="">
               {flashcardSets.length} total sets • {filteredSets.length} showing
             </p>
           </div>

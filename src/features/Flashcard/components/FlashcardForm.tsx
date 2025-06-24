@@ -102,7 +102,6 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
   return (
     <div className="min-h-screen ">
       <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2 text-center">
             {FlashcardSet?.id ? "Edit study set" : "Create a new study set"}
@@ -110,7 +109,6 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Basic Info */}
           <div className="space-y-4">
             <div>
               <input
@@ -134,7 +132,6 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
             </div>
           </div>
 
-          {/* Flashcards */}
           <div className="space-y-4">
             {flashcards.map((flashcard, index) => (
               <Flashcard
@@ -146,7 +143,6 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
               />
             ))}
 
-            {/* Add Card Button */}
             <button
               type="button"
               onClick={addMoreCard}
@@ -169,7 +165,6 @@ const FlashcardForm: React.FC<FlashcardFormProps> = ({
             </button>
           </div>
 
-          {/* Submit Button */}
           <div className="flex justify-end pt-6">
             <button
               type="submit"

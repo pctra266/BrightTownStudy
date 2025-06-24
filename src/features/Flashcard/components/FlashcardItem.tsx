@@ -75,11 +75,9 @@ const Flashcard: React.FC<FlashcardItemProps> = ({
         </div>
       </div>
 
-      {/* Image Selection Section */}
       <div className="mt-4 p-4 bg-gray-50 rounded-lg">
         <h4 className="text-sm font-medium text-gray-700 mb-3">Add Image (Optional)</h4>
         
-        {/* Search Term Input */}
         <div className="mb-3">
           <input
             type="text"

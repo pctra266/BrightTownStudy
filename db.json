@@ -41,8 +41,8 @@
       ]
     },
     {
-      "name": "OnlyCat",
-      "description": "cat cat cat",
+      "name": "Biology - Animal Facts",
+      "description": "Facts about domestic and wild cats.",
       "flashcards": [
         {
           "id": "77c1cae2-fea2-4cea-8df9-a3d55e8f1df9",
@@ -68,8 +68,8 @@
     },
     {
       "id": "0985",
-      "name": "last set",
-      "description": "t",
+      "name": "Basic Mathematics",
+      "description": "A review of basic numerical concepts.",
       "flashcards": [
         {
           "id": "be595790-8cce-4a04-a470-8eaf3f1df9d3",
@@ -86,8 +86,8 @@
     },
     {
       "id": "c2e3",
-      "name": "lam on lam phuoc",
-      "description": "",
+      "name": "Computer Science Basics",
+      "description": "Computer Science Basics",
       "flashcards": [
         {
           "id": "8fd0fcae-41ba-4299-8e88-8b1878b5b11d",
@@ -106,13 +106,13 @@
     },
     {
       "id": "9a0d",
-      "name": "Toi kho qua",
-      "description": "met moi",
+      "name": "Astronomy - Space Facts",
+      "description": "Basic facts about space and astronomy.",
       "flashcards": [
         {
           "id": "0a5dec81-51c7-4118-b88c-171e10444294",
-          "question": "new term",
-          "answer": "new def",
+          "question": "What is a term used to describe the universe beyond Earth?",
+          "answer": "Outer space",
           "image": {
             "id": "RmoWqDCqN2E",
             "url": "https://images.unsplash.com/photo-1537420327992-d6e192287183?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHwxfHxzcGFjZXxlbnwwfHx8fDE3NDk3MTY0NjF8MA&ixlib=rb-4.1.0&q=80&w=400",
@@ -121,8 +121,8 @@
         },
         {
           "id": "ac9e1340-f1fd-499f-a59e-978a594c0192",
-          "question": "space 2",
-          "answer": "alanawalker",
+          "question": "Who is Alan Walker in the context of music or entertainment?",
+          "answer": "A Norwegian DJ and record producer.",
           "image": {
             "id": "WPapb9IqRKw",
             "url": "https://images.unsplash.com/photo-1591389703635-e15a07b842d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjI5NDh8MHwxfHNlYXJjaHw1fHxsYW5kfGVufDB8fHx8MTc0OTcxNjQ4M3ww&ixlib=rb-4.1.0&q=80&w=400",
@@ -133,8 +133,8 @@
       "userId": "5"
     },
     {
-      "name": "new set public toi da sua cai nay",
-      "description": "description",
+      "name": "Art and Entertainment",
+      "description": "Flashcards covering music and anime.",
       "flashcards": [
         {
           "id": "83b85b15-5cae-4495-87eb-a0b3b86f210e",
@@ -148,7 +148,7 @@
         },
         {
           "id": "0a4a86ee-daf5-405d-81f9-9437e9982600",
-          "question": "which anime",
+          "question": "Which anime features supernatural elements and comedy?",
           "answer": "dan da dan",
           "image": {
             "id": "nKO_1QyFh9o",
@@ -162,8 +162,8 @@
     },
     {
       "id": "aa00",
-      "name": "123",
-      "description": "146",
+      "name": "Quick Math Review",
+      "description": "Short flashcards for quick math facts.",
       "flashcards": [
         {
           "id": "a4fc738e-09f8-4381-89fe-68d905171a14",

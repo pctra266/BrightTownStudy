@@ -1,5 +1,4 @@
 import Fog from "../Fog/Fog";
-import Sparkle from "../Spakle/Spakle";
 import Owl from "../Owl/Owl";
 import Scroll from "../../assets/images/Scroll.png";
 import LibraryBackGroundImg from "../../assets/images/newLibrary.jpg";
@@ -15,10 +14,9 @@ const LibraryBackGround = ({ children }: LibraryBackGroundProps) => {
       style={{ backgroundImage: `url(${LibraryBackGroundImg})` }}
     >
       <Fog></Fog>
-      <Sparkle></Sparkle>
       <Owl></Owl>
       <div className="relative w-full">
-        <img src={Scroll} className="w-full" alt="Scroll Background" />
+      <img src={Scroll} className="w-full mix-blend-soft-light opacity-0" alt="Scroll Background" />
         <div className="absolute top-[16%] left-[11%] w-[78%] h-[70%] flex-col flex justify-center items-center gap-8 ">
           {children}
         </div>
